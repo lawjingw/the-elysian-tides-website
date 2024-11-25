@@ -3,16 +3,14 @@ import Link from "next/link";
 
 function Logo() {
   return (
-    <Link href="/" className="flex items-center gap-4 z-10">
+    <Link href="/" className="z-10 flex items-center gap-4">
       <Image
         src="/logo.svg"
         height={60}
         width={60}
-        alt="the Thistle & Tide hotel logo"
+        alt="the Tidecott hotel logo"
       />
-      <span className="text-xl font-bold text-primary-100]">
-        Thistle & Tide
-      </span>
+      <span className="text-primary-100] text-xl font-bold">Tidecott</span>
     </Link>
   );
 }
