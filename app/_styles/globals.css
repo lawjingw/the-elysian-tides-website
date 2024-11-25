@@ -8,7 +8,7 @@
     width: 60px;
     aspect-ratio: 1;
     border-radius: 50%;
-    border: 8px solid theme("colors.primary.500");
+    border: 8px solid theme("colors.primary.900");
     border-right-color: theme("colors.primary.200");
     animation: rotate 1s infinite linear;
   }
@@ -28,4 +28,13 @@
       transform: rotate(1turn);
     }
   }
+}
+
+/* For data picker */
+
+.rdp {
+  --rdp-cell-size: 32px !important;
+  --rdp-accent-color: theme("colors.accent.500") !important;
+  --rdp-background-color: theme("colors.accent.600") !important;
+  margin: 0 !important;
 }

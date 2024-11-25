@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./_styles/globals.css";
-import Navigation from "@/app/_components/navigation";
-import Logo from "@/app/_components/logo";
 import { Josefin_Sans } from "next/font/google";
 import Header from "./_components/header";
 
@@ -12,8 +10,8 @@ const josefin = Josefin_Sans({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s - The Tidecott Hotel",
-    default: "The Tidecott Hotel Website",
+    template: "%s - Elysian Tides Resort",
+    default: "The Elysian Tides Resort Website",
   },
   description: "A luxury hotel website built with Next.js",
 };
@@ -26,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${josefin.className} flex min-h-screen flex-col bg-accent-100 text-accent-500 antialiased`}
+        className={`${josefin.className} bg-primary-950 relative flex min-h-screen flex-col text-primary-100 antialiased`}
       >
         <Header />
         <div className="flex-1 px-8 py-12">
