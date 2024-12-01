@@ -14,14 +14,14 @@ export default function Home() {
       />
 
       <div className="relative z-10 text-center">
-        <h1 className="text-primary-50 mb-10 text-8xl font-normal tracking-tight">
+        <h1 className="mb-10 text-8xl font-normal tracking-tight text-primary-50">
           Welcome to paradise.
         </h1>
         <Link
-          href="/cottages"
-          className="text-primary-800 hover:bg-accent-600 bg-accent-500 px-8 py-6 text-lg font-semibold transition-all"
+          href="/rooms"
+          className="bg-accent-500 px-8 py-6 text-lg font-semibold text-primary-800 transition-all hover:bg-accent-600"
         >
-          Explore luxury villas
+          Explore Deluxe Rooms
         </Link>
       </div>
     </main>
