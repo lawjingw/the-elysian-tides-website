@@ -17,7 +17,7 @@ function Page() {
 
         <div className="space-y-8">
           <p>
-            where luxury meets the serene beauty of the sea. Nestled along an
+            Where luxury meets the serene beauty of the sea. Nestled along an
             unspoiled stretch of coastline, our resort and spa offer a sanctuary
             for those seeking unparalleled relaxation, indulgence, and
             rejuvenation.
