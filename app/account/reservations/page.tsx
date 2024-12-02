@@ -1,4 +1,4 @@
-import ReservationCard from "@/app/_components/reservation-card";
+import ReservationCard from "@/components/reservation-card";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

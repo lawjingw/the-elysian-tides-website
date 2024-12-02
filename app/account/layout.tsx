@@ -1,4 +1,4 @@
-import SideNavigation from "../_components/side-navigation";
+import SideNavigation from "../../components/side-navigation";
 
 function layout({ children }: { children: React.ReactNode }) {
   return (
