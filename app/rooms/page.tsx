@@ -1,14 +1,13 @@
 import { Metadata } from "next";
-import RoomCard from "../../components/room-card";
-import { getRooms } from "../../lib/data-service";
+import RoomList from "@/components/room-list";
+import { Suspense } from "react";
+import Spinner from "@/components/spinner";
 
 export const metadata: Metadata = {
   title: "Rooms",
 };
 
-async function Page() {
-  const rooms = await getRooms();
-
+function Page() {
   return (
     <div>
       <h1 className="mb-5 text-4xl font-medium text-accent-400">
@@ -19,13 +18,9 @@ async function Page() {
         suites.
       </p>
 
-      {rooms.length > 0 && (
-        <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:gap-12 xl:gap-14">
-          {rooms.map((room) => (
-            <RoomCard room={room} key={room.id} />
-          ))}
-        </div>
-      )}
+      <Suspense fallback={<Spinner />}>
+        <RoomList />
+      </Suspense>
     </div>
   );
 }

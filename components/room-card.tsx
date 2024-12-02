@@ -1,3 +1,5 @@
+"use client";
+
 import { UsersIcon } from "lucide-react";
 import { Room } from "../lib/type";
 import Image from "next/image";
@@ -14,8 +16,8 @@ function RoomCard({ room }: RoomCardProps) {
       <Image
         src={image || ""}
         alt={name}
-        width={50}
-        height={50}
+        width={200}
+        height={200}
         className="flex-1 border-r border-primary-800 object-cover"
       />
 

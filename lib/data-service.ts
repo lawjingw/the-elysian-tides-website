@@ -42,7 +42,7 @@ export async function getRooms() {
     .from("rooms")
     .select("id, name, maxCapacity, regularPrice, discount, image")
     .order("regularPrice");
-  console.log(data);
+
   if (error) {
     throw new Error("Rooms could not be loaded");
   }
