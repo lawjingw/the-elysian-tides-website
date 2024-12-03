@@ -1,5 +1,6 @@
 import { eachDayOfInterval } from "date-fns";
 import { createClient } from "./supabase/superbase";
+import { notFound } from "next/navigation";
 
 export async function getRoom(id: number) {
   const supabase = await createClient();
@@ -11,7 +12,7 @@ export async function getRoom(id: number) {
     .single();
 
   if (error) {
-    console.error(error);
+    notFound();
   }
 
   return data;
