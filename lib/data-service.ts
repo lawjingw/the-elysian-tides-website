@@ -1,18 +1,14 @@
 import { eachDayOfInterval } from "date-fns";
 import { createClient } from "./supabase/superbase";
 
-/////////////
-// GET
-
 export async function getRoom(id: number) {
+  const supabase = await createClient();
+
   const { data, error } = await supabase
     .from("rooms")
     .select("*")
     .eq("id", id)
     .single();
-
-  // For testing
-  // await new Promise((res) => setTimeout(res, 1000));
 
   if (error) {
     console.error(error);
