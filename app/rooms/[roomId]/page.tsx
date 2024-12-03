@@ -8,6 +8,15 @@ type RoomPageProps = {
   };
 };
 
+export async function generateMetadata({ params }: RoomPageProps) {
+  const room = await getRoom(params.roomId);
+  const { name } = room!;
+
+  return {
+    title: name,
+  };
+}
+
 async function page({ params }: RoomPageProps) {
   const room = await getRoom(params.roomId);
   const { name, maxCapacity, image, description } = room!;
