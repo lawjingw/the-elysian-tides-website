@@ -1,4 +1,4 @@
-import ReservationCard from "@/components/reservation-card";
+//import ReservationCard from "@/components/reservation-card";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -24,9 +24,9 @@ function Page() {
         </p>
       ) : (
         <ul className="space-y-6">
-          {bookings.map((booking) => (
+          {/* {bookings.map((booking) => (
             <ReservationCard booking={booking} key={booking.id} />
-          ))}
+          ))} */}
         </ul>
       )}
     </div>

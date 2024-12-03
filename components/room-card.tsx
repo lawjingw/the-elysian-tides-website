@@ -3,6 +3,7 @@
 import { UsersIcon } from "lucide-react";
 import { Room } from "../lib/type";
 import Image from "next/image";
+import Link from "next/link";
 
 type RoomCardProps = {
   room: Room;
@@ -52,12 +53,12 @@ function RoomCard({ room }: RoomCardProps) {
         </div>
 
         <div className="border-t border-t-primary-800 bg-primary-950 text-right">
-          <a
+          <Link
             href={`/rooms/${id}`}
             className="inline-block border-l border-primary-800 px-6 py-4 transition-all hover:bg-accent-600 hover:text-primary-900"
           >
             Details & reservation &rarr;
-          </a>
+          </Link>
         </div>
       </div>
     </div>

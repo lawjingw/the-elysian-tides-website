@@ -1,4 +1,4 @@
-import { getRoom } from "@/lib/data-service";
+import { getRoom, getRooms } from "@/lib/data-service";
 import { EyeOff, MapPinIcon, UsersIcon } from "lucide-react";
 import Image from "next/image";
 

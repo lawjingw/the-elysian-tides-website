@@ -7,3 +7,10 @@ export type Room = {
   image: string | null;
   description?: string | null;
 };
+
+export type countries = [
+  {
+    name: string;
+    flag: string;
+  },
+];

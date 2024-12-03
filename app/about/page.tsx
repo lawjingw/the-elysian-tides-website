@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import about1 from "@/public/about-1.jpg";
 import about2 from "@/public/about-2.jpg";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "About us",
@@ -76,12 +77,12 @@ function Page() {
           </p>
 
           <div>
-            <a
-              href="/cabins"
+            <Link
+              href="/rooms"
               className="mt-4 inline-block bg-accent-500 px-8 py-5 text-lg font-semibold text-primary-800 transition-all hover:bg-accent-600"
             >
-              Explore our luxury cabins
-            </a>
+              Explore our luxury rooms
+            </Link>
           </div>
         </div>
       </div>
