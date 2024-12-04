@@ -2,12 +2,19 @@ import { Metadata } from "next";
 import RoomList from "@/components/room-list";
 import { Suspense } from "react";
 import Spinner from "@/components/spinner";
+import Filter from "@/components/filter";
 
 export const metadata: Metadata = {
   title: "Rooms",
 };
 
-function Page() {
+type PageProps = {
+  searchParams: { capacity: string };
+};
+
+function Page({ searchParams }: PageProps) {
+  const filter = searchParams?.capacity ?? "all";
+
   return (
     <div>
       <h1 className="mb-5 text-4xl font-medium text-accent-400">
@@ -17,9 +24,11 @@ function Page() {
         Stylishly refurbished, Verdura Resort&apos;s newly decorated rooms and
         suites.
       </p>
-
+      <div className="mb-8 flex justify-end">
+        <Filter />
+      </div>
       <Suspense fallback={<Spinner />}>
-        <RoomList />
+        <RoomList filter={filter} />
       </Suspense>
     </div>
   );

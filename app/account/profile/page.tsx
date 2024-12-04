@@ -1,4 +1,4 @@
-import SelectCountry from "@/components/SelectCountry";
+import SelectCountry from "@/components/select-country";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
