@@ -1,11 +1,18 @@
 "use client";
 
+import { useEffect } from "react";
+
 type ErrorProps = {
-  error: Error;
+  error: Error & { digest?: string };
   reset: () => void;
 };
 
 export default function Error({ error, reset }: ErrorProps) {
+  useEffect(() => {
+    // Log the error to an error reporting service
+    console.error(error);
+  }, [error]);
+
   return (
     <main className="flex flex-col items-center justify-center gap-6">
       <h1 className="text-3xl font-semibold">Something went wrong!</h1>
