@@ -1,4 +1,5 @@
-import { getRoom, getRooms } from "@/lib/data-service";
+import TextExpander from "@/components/text-expander";
+import { getRoom } from "@/lib/data-service";
 import { EyeOff, MapPinIcon, UsersIcon } from "lucide-react";
 import Image from "next/image";
 
@@ -33,7 +34,9 @@ async function page({ params }: RoomPageProps) {
             {name}
           </h3>
 
-          <p className="mb-10 text-lg text-primary-300">{description}</p>
+          <p className="mb-10 text-lg text-primary-300">
+            <TextExpander>{description}</TextExpander>
+          </p>
 
           <ul className="mb-7 flex flex-col gap-4">
             <li className="flex items-center gap-3">
