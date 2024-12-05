@@ -2,7 +2,8 @@
 
 import { Room, Settings } from "@/lib/type";
 import { addYears, isWithinInterval } from "date-fns";
-import { DayPicker } from "react-day-picker";
+import { useState } from "react";
+import { DateRange, DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 
 // function isAlreadyBooked(range, datesArr) {
@@ -22,13 +23,21 @@ type DateSelectorProps = {
 };
 
 function DateSelector({ settings, room, bookedDates }: DateSelectorProps) {
+  const [selectedRange, setSelectedRange] = useState<DateRange | undefined>();
   const { regularPrice, discount } = room;
   const numNights = 0;
   const roomPrice = 0;
-  const range = { from: null, to: null };
 
   // SETTINGS
   const { minBookingLength, maxBookingLength } = settings;
+
+  const handleSelect = (newSelected: DateRange | undefined) => {
+    setSelectedRange(newSelected);
+  };
+
+  const resetRange = () => {
+    setSelectedRange(undefined);
+  };
 
   return (
     <div className="flex flex-col justify-between">
@@ -42,6 +51,8 @@ function DateSelector({ settings, room, bookedDates }: DateSelectorProps) {
         endMonth={addYears(new Date(), 2)}
         captionLayout="dropdown"
         numberOfMonths={2}
+        selected={selectedRange}
+        onSelect={handleSelect}
       />
 
       <div className="flex h-[72px] items-center justify-between bg-accent-500 px-8 text-primary-800">
@@ -72,14 +83,14 @@ function DateSelector({ settings, room, bookedDates }: DateSelectorProps) {
           ) : null}
         </div>
 
-        {range.from || range.to ? (
+        {selectedRange && (
           <button
             className="border border-primary-800 px-4 py-2 text-sm font-semibold"
-            onClick={() => resetRange()}
+            onClick={resetRange}
           >
             Clear
           </button>
-        ) : null}
+        )}
       </div>
     </div>
   );

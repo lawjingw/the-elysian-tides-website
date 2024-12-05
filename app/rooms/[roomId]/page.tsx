@@ -26,7 +26,7 @@ async function page({ params }: RoomPageProps) {
     <div className="mx-auto mt-8 max-w-6xl">
       <RoomDetail room={room} />
       <div>
-        <h2 className="text-center text-5xl font-semibold">
+        <h2 className="mb-10 text-center text-5xl font-semibold text-accent-400">
           Reserve {room.name.toLowerCase()} today. Pay on arrival.
         </h2>
         <Suspense fallback={<Spinner />}>

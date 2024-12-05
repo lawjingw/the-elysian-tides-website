@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "react-day-picker/style.css";
 import "@/styles/global.css";
 import { Josefin_Sans } from "next/font/google";
 import Header from "../components/header";
