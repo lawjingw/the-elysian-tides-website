@@ -1,9 +1,9 @@
 "use client";
 
+import { useReservationContext } from "@/hooks/use-reservation-context";
 import { Room, Settings } from "@/lib/type";
 import { addYears, isWithinInterval } from "date-fns";
-import { useState } from "react";
-import { DateRange, DayPicker } from "react-day-picker";
+import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 
 // function isAlreadyBooked(range, datesArr) {
@@ -23,7 +23,7 @@ type DateSelectorProps = {
 };
 
 function DateSelector({ settings, room, bookedDates }: DateSelectorProps) {
-  const [selectedRange, setSelectedRange] = useState<DateRange | undefined>();
+  const { handleSelect, resetRange, selectedRange } = useReservationContext();
   const { regularPrice, discount } = room;
   const numNights = 0;
   const roomPrice = 0;
@@ -31,20 +31,12 @@ function DateSelector({ settings, room, bookedDates }: DateSelectorProps) {
   // SETTINGS
   const { minBookingLength, maxBookingLength } = settings;
 
-  const handleSelect = (newSelected: DateRange | undefined) => {
-    setSelectedRange(newSelected);
-  };
-
-  const resetRange = () => {
-    setSelectedRange(undefined);
-  };
-
   return (
     <div className="flex flex-col justify-between">
       <DayPicker
         classNames={{ months: `flex flex-row flex-nowrap` }}
         mode="range"
-        min={minBookingLength + 1}
+        min={minBookingLength}
         max={maxBookingLength}
         startMonth={new Date()}
         hidden={{ before: new Date() }}
