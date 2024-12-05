@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-function TextExpander({ children }: { children: string | null }) {
+function TextExpander({ children }: { children?: string | null }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   if (!children) {
