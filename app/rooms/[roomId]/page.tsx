@@ -65,7 +65,7 @@ async function page({ params }: RoomPageProps) {
 
       <div>
         <h2 className="text-center text-5xl font-semibold">
-          Reserve today. Pay on arrival.
+          Reserve {name} today. Pay on arrival.
         </h2>
       </div>
     </div>
