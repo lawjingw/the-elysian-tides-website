@@ -1,6 +1,10 @@
 import Link from "next/link";
+import Avatar from "./avatar";
+import { getCurrentUser } from "@/lib/auth-service";
 
-export default function Navigation() {
+export default async function Navigation() {
+  const user = await getCurrentUser();
+
   return (
     <nav className="z-10 text-xl">
       <ul className="flex items-center gap-16">
@@ -25,7 +29,7 @@ export default function Navigation() {
             href="/account"
             className="transition-colors hover:text-accent-400"
           >
-            Guest area
+            {user ? <Avatar user={user} /> : "Guest area"}
           </Link>
         </li>
       </ul>

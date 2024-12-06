@@ -1,29 +1,22 @@
 "use client";
 
 import { Room } from "@/lib/type";
+import { User } from "@supabase/supabase-js";
+import Avatar from "./avatar";
 
 type ReservationFormProps = {
   room: Room;
+  user: User | null;
 };
 
-function ReservationForm({ room }: ReservationFormProps) {
+async function ReservationForm({ room, user }: ReservationFormProps) {
   const maxCapacity = room.maxCapacity;
 
   return (
     <div className="scale-[1.01]">
       <div className="flex items-center justify-between bg-primary-800 px-16 py-2 text-primary-300">
         <p>Logged in as</p>
-
-        {/* <div className='flex gap-4 items-center'>
-          <img
-            // Important to display google profile images
-            referrerPolicy='no-referrer'
-            className='h-8 rounded-full'
-            src={user.image}
-            alt={user.name}
-          />
-          <p>{user.name}</p>
-        </div> */}
+        <Avatar user={user} />
       </div>
 
       <form className="flex flex-col gap-5 bg-primary-900 px-16 py-10 text-lg">
