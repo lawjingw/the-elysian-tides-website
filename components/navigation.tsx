@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Avatar from "./avatar";
-import { getCurrentUser } from "@/lib/auth-service";
+import { getCurrentUser } from "@/lib/data-service";
 
 export default async function Navigation() {
   const user = await getCurrentUser();

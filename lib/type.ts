@@ -32,6 +32,15 @@ export type Bookings = {
   totalPrice: number;
 };
 
+export type Guest = {
+  id: number;
+  email: string;
+  fullName: string;
+  countryFlag?: string | null;
+  nationalID?: string | null;
+  nationality?: string | null;
+};
+
 export type countries = [
   {
     name: string;

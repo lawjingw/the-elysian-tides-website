@@ -107,8 +107,8 @@ export type Database = {
         Row: {
           countryFlag: string | null;
           created_at: string;
-          email: string | null;
-          fullName: string | null;
+          email: string;
+          fullName: string;
           id: number;
           nationalID: string | null;
           nationality: string | null;
@@ -116,8 +116,8 @@ export type Database = {
         Insert: {
           countryFlag?: string | null;
           created_at?: string;
-          email?: string | null;
-          fullName?: string | null;
+          email: string;
+          fullName: string;
           id?: number;
           nationalID?: string | null;
           nationality?: string | null;
@@ -125,8 +125,8 @@ export type Database = {
         Update: {
           countryFlag?: string | null;
           created_at?: string;
-          email?: string | null;
-          fullName?: string | null;
+          email?: string;
+          fullName?: string;
           id?: number;
           nationalID?: string | null;
           nationality?: string | null;
