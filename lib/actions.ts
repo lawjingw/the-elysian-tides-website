@@ -3,7 +3,9 @@
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { createGuest, getGuest } from "./data-service";
+import { createGuest, getGuest, updateGuest } from "./data-service";
+import { updateProfileFormSchema } from "./schemas";
+import { TUpdateProfileForm } from "./type";
 
 export async function login(formData: FormData) {
   const supabase = createClient();
@@ -72,4 +74,38 @@ export async function signOut() {
 
   revalidatePath("/", "layout");
   redirect("/");
+}
+
+export async function updateProfile(formData: FormData) {
+  if (!formData) {
+    throw new Error("Form data is required");
+  }
+
+  const guestID = formData.get("guestID");
+  const nationalID = formData.get("nationalID");
+  // const [nationality, countryFlag] = formData
+  //   .get("nationality")
+  //   ?.toString()
+  //   .split("%");
+
+  const profileFormData = updateProfileFormSchema.parse(formData);
+
+  // const [nationality, countryFlag] = profileFormData
+  //   .get("nationality")
+  //   .split("%");
+  // const updateData = {
+  //   nationalID: formData.get("nationalID") as string,
+  //   nationality,
+  //   countryFlag,
+  // };
+
+  // try {
+  //   await updateGuest(formData.get("guestID"), updateData);
+  // } catch (error) {
+  //   if (error instanceof Error) {
+  //     throw error;
+  //   }
+  // }
+
+  // revalidatePath("/account/profile", "layout");
 }

@@ -1,7 +1,7 @@
 import { eachDayOfInterval } from "date-fns";
 import { createClient } from "./supabase/server";
 import { notFound } from "next/navigation";
-import { Guest } from "./type";
+import { TablesInsert, TablesUpdate } from "./supabase/database-types";
 
 //for test
 //await new Promise((resolve) => setTimeout(resolve, 5000));
@@ -125,7 +125,7 @@ export async function getGuest(email: string) {
   return data;
 }
 
-export async function createGuest(newGuest: Omit<Guest, "id">) {
+export async function createGuest(newGuest: TablesInsert<"guests">) {
   const supabase = createClient();
 
   const { data, error } = await supabase.from("guests").insert([newGuest]);
@@ -135,6 +135,26 @@ export async function createGuest(newGuest: Omit<Guest, "id">) {
     throw new Error("Guest could not be created");
   }
 
+  return data;
+}
+
+export async function updateGuest(
+  id: number,
+  updatedFields: TablesUpdate<"guests">,
+) {
+  const supabase = createClient();
+
+  const { data, error } = await supabase
+    .from("guests")
+    .update(updatedFields)
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Guest could not be updated");
+  }
   return data;
 }
 
@@ -216,24 +236,6 @@ export async function createGuest(newGuest: Omit<Guest, "id">) {
 
 /////////////
 // UPDATE
-
-// The updatedFields is an object which should ONLY contain the updated data
-// export async function updateGuest(id: number, updatedFields: object) {
-//   const supabase = await createClient();
-
-//   const { data, error } = await supabase
-//     .from("guests")
-//     .update(updatedFields)
-//     .eq("id", id)
-//     .select()
-//     .single();
-
-//   if (error) {
-//     console.error(error);
-//     throw new Error("Guest could not be updated");
-//   }
-//   return data;
-// }
 
 // export async function updateBooking(id: number, updatedFields: object) {
 //   const supabase = await createClient();

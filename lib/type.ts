@@ -1,3 +1,6 @@
+import z from "zod";
+import { updateProfileFormSchema } from "./schemas";
+
 export type Room = {
   id: number;
   name: string;
@@ -41,9 +44,11 @@ export type Guest = {
   nationality?: string | null;
 };
 
-export type countries = [
-  {
-    name: string;
-    flag: string;
-  },
-];
+export type country = {
+  name: string;
+  flag: string;
+};
+
+export type countries = country[];
+
+export type TUpdateProfileForm = z.infer<typeof updateProfileFormSchema>;
