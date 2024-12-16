@@ -18,8 +18,9 @@ export type Settings = {
   breakfastPrice: number;
 };
 
-export type Bookings = {
+export type Booking = {
   id: number;
+  created_at: string;
   endDate: string;
   extraPrice: number | null;
   guestId: number;

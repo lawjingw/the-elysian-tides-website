@@ -1,13 +1,20 @@
-//import ReservationCard from "@/components/reservation-card";
+import ReservationCard from "@/components/reservation-card";
+import { getBookings, getCurrentUser } from "@/lib/data-service";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Reservations",
 };
 
-function Page() {
-  // CHANGE
-  const bookings = [];
+async function Page() {
+  const currentUser = await getCurrentUser();
+
+  if (!currentUser) {
+    throw new Error("You need to be signed in to access this page");
+  }
+
+  const bookings = await getBookings(currentUser.email!);
+  console.log(bookings);
 
   return (
     <div>
@@ -24,9 +31,9 @@ function Page() {
         </p>
       ) : (
         <ul className="space-y-6">
-          {/* {bookings.map((booking) => (
+          {bookings.map((booking) => (
             <ReservationCard booking={booking} key={booking.id} />
-          ))} */}
+          ))}
         </ul>
       )}
     </div>

@@ -1,4 +1,4 @@
-import { login, signup } from "@/lib/actions";
+import { login } from "@/lib/actions";
 import { Metadata } from "next";
 import Link from "next/link";
 

@@ -93,6 +93,24 @@ export async function getBookedDatesByRoomId(roomId: number) {
   return bookedDates;
 }
 
+export async function getBookings(email: string) {
+  const supabase = createClient();
+
+  const { data, error, count } = await supabase
+    .from("bookings")
+    // We actually also need data on the rooms as well. But let's ONLY take the data that we actually need, in order to reduce downloaded data.
+    .select("*, guests(email), rooms(name, image)")
+    .eq("guests.email", email)
+    .order("startDate");
+
+  if (error) {
+    console.error(error);
+    throw new Error("Bookings could not get loaded");
+  }
+
+  return data;
+}
+
 /////////////
 // Settings Services
 
