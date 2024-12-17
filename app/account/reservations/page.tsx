@@ -9,11 +9,7 @@ export const metadata: Metadata = {
 async function Page() {
   const currentUser = await getCurrentUser();
 
-  if (!currentUser) {
-    throw new Error("You need to be signed in to access this page");
-  }
-
-  const bookings = await getBookings(currentUser.email!);
+  const bookings = await getBookings(currentUser!.email!);
 
   return (
     <div>

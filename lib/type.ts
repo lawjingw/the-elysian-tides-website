@@ -1,5 +1,8 @@
 import z from "zod";
-import { updateProfileFormSchema } from "./schemas";
+import {
+  updateProfileFormSchema,
+  updateReservationFormSchema,
+} from "./schemas";
 
 export type Room = {
   id: number;
@@ -53,3 +56,7 @@ export type country = {
 export type countries = country[];
 
 export type TUpdateProfileForm = z.infer<typeof updateProfileFormSchema>;
+
+export type TUpdateReservationForm = z.infer<
+  typeof updateReservationFormSchema
+>;

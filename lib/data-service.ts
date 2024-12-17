@@ -110,6 +110,23 @@ export async function getBookings(email: string) {
   return data;
 }
 
+export async function getBooking(id: number) {
+  const supabase = createClient();
+
+  const { data, error, count } = await supabase
+    .from("bookings")
+    .select("*, rooms(maxCapacity)")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Booking could not get loaded");
+  }
+
+  return data;
+}
+
 export async function deleteBooking(id: number) {
   const supabase = createClient();
 
@@ -203,23 +220,6 @@ export async function updateGuest(
 // }
 
 // Guests are uniquely identified by their email address
-
-// export async function getBooking(id: number) {
-//   const supabase = await createClient();
-
-//   const { data, error, count } = await supabase
-//     .from("bookings")
-//     .select("*")
-//     .eq("id", id)
-//     .single();
-
-//   if (error) {
-//     console.error(error);
-//     throw new Error("Booking could not get loaded");
-//   }
-
-//   return data;
-// }
 
 // export async function getBookings(guestId: number) {
 //   const supabase = await createClient();

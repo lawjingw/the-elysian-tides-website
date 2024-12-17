@@ -15,17 +15,11 @@ import {
   FormLabel,
   FormMessage,
 } from "./ui/form";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select";
 import { getCountries } from "@/lib/utils";
 import { updateProfile } from "@/lib/actions";
 import { Button } from "./ui/button";
 import { useFormStatus } from "react-dom";
+import FormSelect from "./form-select";
 
 type UpdateProfileFormProps = {
   guest: Guest;
@@ -34,6 +28,10 @@ type UpdateProfileFormProps = {
 function UpdateProfileForm({ guest }: UpdateProfileFormProps) {
   const { id, fullName, email, countryFlag, nationality, nationalID } = guest;
   const [countries, setCountries] = useState<countries>([]);
+  const countryOptions = countries.map((country) => ({
+    value: `${country.name}%${country.flag}`,
+    label: country.name,
+  }));
 
   const form = useForm<TUpdateProfileForm>({
     resolver: zodResolver(updateProfileFormSchema),
@@ -105,27 +103,13 @@ function UpdateProfileForm({ guest }: UpdateProfileFormProps) {
                   />
                 )}
               </div>
-              <Select
-                name={field.name}
-                onValueChange={field.onChange}
-                defaultValue={field.value}
-              >
-                <FormControl>
-                  <SelectTrigger className="bg-primary-200 px-5 py-5 text-primary-800">
-                    <SelectValue placeholder="Select country..." />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  {countries.map((country) => (
-                    <SelectItem
-                      key={country.name}
-                      value={`${country.name}%${country.flag}`}
-                    >
-                      {country.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <FormControl>
+                <FormSelect
+                  field={field}
+                  placeholder="Select country..."
+                  options={countryOptions}
+                />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
