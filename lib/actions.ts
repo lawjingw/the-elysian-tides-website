@@ -3,7 +3,13 @@
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { createGuest, getGuest, updateGuest } from "./data-service";
+import {
+  createGuest,
+  deleteBooking,
+  getCurrentUser,
+  getGuest,
+  updateGuest,
+} from "./data-service";
 import { updateProfileFormSchema } from "./schemas";
 
 export async function login(formData: FormData) {
@@ -94,4 +100,21 @@ export async function updateProfile(formData: FormData) {
   }
 
   revalidatePath("/account/profile", "layout");
+}
+
+export async function deleteReservation(bookingId: number, email: string) {
+  const currentUser = await getCurrentUser();
+
+  if (!currentUser || currentUser.email !== email) {
+    throw new Error("You need to be signed in to delete a reservation");
+  }
+
+  // Delete the reservation
+  try {
+    await deleteBooking(bookingId);
+  } catch (error) {
+    throw error;
+  }
+
+  revalidatePath("/account/reservations");
 }

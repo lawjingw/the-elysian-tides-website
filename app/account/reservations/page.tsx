@@ -14,7 +14,6 @@ async function Page() {
   }
 
   const bookings = await getBookings(currentUser.email!);
-  console.log(bookings);
 
   return (
     <div>

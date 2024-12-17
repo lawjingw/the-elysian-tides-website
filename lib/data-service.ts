@@ -96,19 +96,29 @@ export async function getBookedDatesByRoomId(roomId: number) {
 export async function getBookings(email: string) {
   const supabase = createClient();
 
-  const { data, error, count } = await supabase
+  const { data, error } = await supabase
     .from("bookings")
     // We actually also need data on the rooms as well. But let's ONLY take the data that we actually need, in order to reduce downloaded data.
     .select("*, guests(email), rooms(name, image)")
     .eq("guests.email", email)
     .order("startDate");
-
   if (error) {
     console.error(error);
     throw new Error("Bookings could not get loaded");
   }
 
   return data;
+}
+
+export async function deleteBooking(id: number) {
+  const supabase = createClient();
+
+  const { error } = await supabase.from("bookings").delete().eq("id", id);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Booking could not be deleted");
+  }
 }
 
 /////////////
@@ -274,15 +284,3 @@ export async function updateGuest(
 
 /////////////
 // DELETE
-
-// export async function deleteBooking(id: number) {
-//   const supabase = await createClient();
-
-//   const { data, error } = await supabase.from("bookings").delete().eq("id", id);
-
-//   if (error) {
-//     console.error(error);
-//     throw new Error("Booking could not be deleted");
-//   }
-//   return data;
-// }
