@@ -13,6 +13,9 @@ import { Room, TUpdateReservationForm } from "@/lib/type";
 import { updateReservationFormSchema } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import FormSelect from "./form-select";
+import { Textarea } from "./ui/textarea";
+import { updateReservation } from "@/lib/actions";
+import { SubmitButton } from "./submit-button";
 
 type UpdateReservationFormProps = {
   booking: {
@@ -24,7 +27,7 @@ type UpdateReservationFormProps = {
 };
 
 function UpdateReservationForm({ booking }: UpdateReservationFormProps) {
-  const { numGuests, observations, rooms } = booking;
+  const { id, numGuests, observations, rooms } = booking;
   const maxCapacity = rooms?.maxCapacity || 1;
   const guestOptions = Array.from({ length: maxCapacity }, (_, i) => i + 1).map(
     (x) => ({
@@ -41,15 +44,25 @@ function UpdateReservationForm({ booking }: UpdateReservationFormProps) {
     },
   });
 
+  const handleAction = async (formData: FormData) => {
+    const result = await form.trigger();
+    if (!result) return;
+
+    await updateReservation(formData);
+  };
+
   return (
     <Form {...form}>
-      <form className="flex flex-col gap-6 bg-primary-900 px-12 py-8 text-lg">
+      <form
+        action={handleAction}
+        className="flex flex-col gap-6 bg-primary-900 px-12 py-8 text-lg"
+      >
         <FormField
           control={form.control}
           name="numGuests"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-base">How many guests?</FormLabel>
+              <FormLabel>How many guests?</FormLabel>
               <FormControl>
                 <FormSelect
                   field={field}
@@ -62,21 +75,35 @@ function UpdateReservationForm({ booking }: UpdateReservationFormProps) {
           )}
         />
 
-        <div className="space-y-2">
-          <label htmlFor="observations">
-            Anything we should know about your stay?
-          </label>
-          <textarea
-            name="observations"
-            defaultValue={observations || ""}
-            className="w-full rounded-sm bg-primary-200 px-5 py-3 text-primary-800 shadow-sm"
-          />
-        </div>
+        <FormField
+          control={form.control}
+          name="observations"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Anything we should know about your stay?</FormLabel>
+              <FormControl>
+                <Textarea
+                  className="bg-primary-200 text-primary-800"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <input
+          type="number"
+          value={id}
+          hidden
+          readOnly
+          {...form.register("bookingId")}
+        />
 
         <div className="flex items-center justify-end gap-6">
-          <button className="bg-accent-500 px-8 py-4 font-semibold text-primary-800 transition-all hover:bg-accent-600 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
+          <SubmitButton pendingText="Updating...">
             Update reservation
-          </button>
+          </SubmitButton>
         </div>
       </form>
     </Form>

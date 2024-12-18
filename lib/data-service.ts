@@ -127,6 +127,26 @@ export async function getBooking(id: number) {
   return data;
 }
 
+export async function updateBooking(
+  id: number,
+  updatedFields: TablesUpdate<"bookings">,
+) {
+  const supabase = createClient();
+
+  const { data, error } = await supabase
+    .from("bookings")
+    .update(updatedFields)
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Booking could not be updated");
+  }
+  return data;
+}
+
 export async function deleteBooking(id: number) {
   const supabase = createClient();
 
@@ -261,26 +281,3 @@ export async function updateGuest(
 
 //   return data;
 // }
-
-/////////////
-// UPDATE
-
-// export async function updateBooking(id: number, updatedFields: object) {
-//   const supabase = await createClient();
-
-//   const { data, error } = await supabase
-//     .from("bookings")
-//     .update(updatedFields)
-//     .eq("id", id)
-//     .select()
-//     .single();
-
-//   if (error) {
-//     console.error(error);
-//     throw new Error("Booking could not be updated");
-//   }
-//   return data;
-// }
-
-/////////////
-// DELETE

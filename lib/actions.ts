@@ -8,9 +8,13 @@ import {
   deleteBooking,
   getCurrentUser,
   getGuest,
+  updateBooking,
   updateGuest,
 } from "./data-service";
-import { updateProfileFormSchema } from "./schemas";
+import {
+  updateProfileFormSchema,
+  updateReservationFormSchema,
+} from "./schemas";
 
 export async function login(formData: FormData) {
   const supabase = createClient();
@@ -85,14 +89,14 @@ export async function updateProfile(formData: FormData) {
   const data = updateProfileFormSchema.parse(Object.fromEntries(formData));
   const [nationality, countryFlag] = data.nationality.split("%");
 
-  const updateData = {
+  const updatedFields = {
     nationalID: data.nationalID,
     nationality: nationality,
     countryFlag: countryFlag,
   };
 
   try {
-    await updateGuest(data.guestID, updateData);
+    await updateGuest(data.guestID, updatedFields);
   } catch (error) {
     if (error instanceof Error) {
       throw error;
@@ -117,4 +121,23 @@ export async function deleteReservation(bookingId: number, email: string) {
   }
 
   revalidatePath("/account/reservations");
+}
+
+export async function updateReservation(formData: FormData) {
+  const data = updateReservationFormSchema.parse(Object.fromEntries(formData));
+  const updatedFields = {
+    numGuests: Number(data.numGuests),
+    observations: data.observations,
+  };
+
+  try {
+    await updateBooking(data.bookingId, updatedFields);
+  } catch (error) {
+    if (error instanceof Error) {
+      throw error;
+    }
+  }
+
+  revalidatePath("/account/reservations/edit/[id]");
+  redirect("/account/reservations");
 }
