@@ -18,7 +18,10 @@ export const updateProfileFormSchema = zfd.formData({
 export const updateReservationFormSchema = zfd.formData({
   numGuests: zfd.text(z.string({ required_error: "Please select a number" })),
   observations: zfd.text(
-    z.string().max(100, "Observations must be at most 100 characters"),
+    z
+      .string()
+      .max(100, "Observations must be at most 100 characters")
+      .optional(),
   ),
   bookingId: zfd.numeric(z.number()),
 });
