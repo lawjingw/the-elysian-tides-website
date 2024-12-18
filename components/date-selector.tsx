@@ -2,19 +2,18 @@
 
 import { useReservationContext } from "@/hooks/use-reservation-context";
 import { Room, Settings } from "@/lib/type";
-import { addYears, isWithinInterval } from "date-fns";
-import { DayPicker } from "react-day-picker";
-import "react-day-picker/dist/style.css";
+import { addYears, differenceInDays, isWithinInterval } from "date-fns";
+import { DateRange, DayPicker } from "react-day-picker";
 
-// function isAlreadyBooked(range, datesArr) {
-//   return (
-//     range.from &&
-//     range.to &&
-//     datesArr.some((date) =>
-//       isWithinInterval(date, { start: range.from, end: range.to }),
-//     )
-//   );
-// }
+function isAlreadyBooked(range: DateRange | undefined, datesArr: Date[]) {
+  return (
+    range?.from &&
+    range?.to &&
+    datesArr.some((date) =>
+      isWithinInterval(date, { start: range.from!, end: range.to! }),
+    )
+  );
+}
 
 type DateSelectorProps = {
   settings: Settings;
@@ -24,9 +23,15 @@ type DateSelectorProps = {
 
 function DateSelector({ settings, room, bookedDates }: DateSelectorProps) {
   const { handleSelect, resetRange, selectedRange } = useReservationContext();
+  console.log("selectedRange", selectedRange);
+  const displayRange = isAlreadyBooked(selectedRange, bookedDates)
+    ? undefined
+    : selectedRange;
   const { regularPrice, discount } = room;
-  const numNights = 0;
-  const roomPrice = 0;
+  const numNights = displayRange
+    ? differenceInDays(displayRange.to!, displayRange.from!)
+    : 0;
+  const roomPrice = numNights * (regularPrice - (discount || 0));
 
   // SETTINGS
   const { minBookingLength, maxBookingLength } = settings;
@@ -34,16 +39,16 @@ function DateSelector({ settings, room, bookedDates }: DateSelectorProps) {
   return (
     <div className="flex flex-col justify-between">
       <DayPicker
-        classNames={{ months: `flex flex-row flex-nowrap` }}
+        className="place-self-center pt-12"
         mode="range"
         min={minBookingLength}
         max={maxBookingLength}
         startMonth={new Date()}
-        hidden={{ before: new Date() }}
+        disabled={[{ before: new Date() }, ...bookedDates]}
         endMonth={addYears(new Date(), 2)}
         captionLayout="dropdown"
         numberOfMonths={2}
-        selected={selectedRange}
+        selected={displayRange}
         onSelect={handleSelect}
       />
 

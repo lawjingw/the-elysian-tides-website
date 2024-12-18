@@ -9,11 +9,11 @@ type ReservationFormProps = {
   user: User | null;
 };
 
-async function ReservationForm({ room, user }: ReservationFormProps) {
+function ReservationForm({ room, user }: ReservationFormProps) {
   const maxCapacity = room.maxCapacity;
 
   return (
-    <div className="scale-[1.01]">
+    <div className="w-full scale-[1.01]">
       <div className="flex items-center justify-between bg-primary-800 px-16 py-2 text-primary-300">
         <p>Logged in as</p>
         <Avatar user={user} />
