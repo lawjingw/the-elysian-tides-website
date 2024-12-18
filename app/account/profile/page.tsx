@@ -1,5 +1,5 @@
 import UpdateProfileForm from "@/components/update-profile-form";
-import { getCurrentUser, getGuest } from "@/lib/data-service";
+import { getCountries, getCurrentUser, getGuest } from "@/lib/data-service";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 
 async function Page() {
   const currentUser = await getCurrentUser();
-
   const guest = await getGuest(currentUser!.email!);
+  const countries = await getCountries();
 
   return (
     <div>
@@ -20,7 +20,7 @@ async function Page() {
         Providing the following information will make your check-in process
         faster and smoother. See you soon!
       </p>
-      <UpdateProfileForm guest={guest!} />
+      <UpdateProfileForm guest={guest!} countries={countries} />
     </div>
   );
 }

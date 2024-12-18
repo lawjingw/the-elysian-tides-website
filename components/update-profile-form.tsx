@@ -1,12 +1,11 @@
 "use client";
 
 import { updateProfileFormSchema } from "@/lib/schemas";
-import { countries, Guest, TUpdateProfileForm } from "@/lib/type";
+import { country, Guest, TUpdateProfileForm } from "@/lib/type";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "./ui/input";
-import { useEffect, useState } from "react";
 import {
   Form,
   FormControl,
@@ -15,18 +14,17 @@ import {
   FormLabel,
   FormMessage,
 } from "./ui/form";
-import { getCountries } from "@/lib/utils";
 import { updateProfile } from "@/lib/actions";
 import FormSelect from "./form-select";
 import { SubmitButton } from "./submit-button";
 
 type UpdateProfileFormProps = {
   guest: Guest;
+  countries: country[];
 };
 
-function UpdateProfileForm({ guest }: UpdateProfileFormProps) {
+function UpdateProfileForm({ guest, countries }: UpdateProfileFormProps) {
   const { id, fullName, email, countryFlag, nationality, nationalID } = guest;
-  const [countries, setCountries] = useState<countries>([]);
   const countryOptions = countries.map((country) => ({
     value: `${country.name}%${country.flag}`,
     label: country.name,
@@ -43,14 +41,6 @@ function UpdateProfileForm({ guest }: UpdateProfileFormProps) {
       guestID: id,
     },
   });
-
-  useEffect(() => {
-    const fetchCountries = async () => {
-      const countries = await getCountries();
-      setCountries(countries);
-    };
-    fetchCountries();
-  }, []);
 
   const handleAction = async (formData: FormData) => {
     const result = await form.trigger();

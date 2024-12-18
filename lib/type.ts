@@ -53,8 +53,6 @@ export type country = {
   flag: string;
 };
 
-export type countries = country[];
-
 export type TUpdateProfileForm = z.infer<typeof updateProfileFormSchema>;
 
 export type TUpdateReservationForm = z.infer<

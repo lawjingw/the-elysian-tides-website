@@ -2,9 +2,25 @@ import { eachDayOfInterval } from "date-fns";
 import { createClient } from "./supabase/server";
 import { notFound } from "next/navigation";
 import { TablesInsert, TablesUpdate } from "./supabase/database-types";
+import { country } from "./type";
 
 //for test
 //await new Promise((resolve) => setTimeout(resolve, 5000));
+
+/////////////
+// Country Services
+
+export async function getCountries() {
+  try {
+    const res = await fetch(
+      "https://restcountries.com/v2/all?fields=name,flag",
+    );
+    const countries: country[] = await res.json();
+    return countries;
+  } catch {
+    throw new Error("Could not fetch countries");
+  }
+}
 
 /////////////
 // Auth Services
