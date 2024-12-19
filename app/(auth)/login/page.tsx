@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 const DEFAULT_EMAIL = "guest@example.com";
-const DEFAULT_PASSWORD = "guest!23456";
+const DEFAULT_PASSWORD = "Guest!23456";
 
 export default function LoginPage() {
   return (

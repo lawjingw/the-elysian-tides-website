@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 async function Page() {
   const currentUser = await getCurrentUser();
 
-  const bookings = await getBookings(currentUser!.email!);
+  const bookings = await getBookings(currentUser!.user_metadata.guestId);
 
   return (
     <div>

@@ -23,7 +23,6 @@ type DateSelectorProps = {
 
 function DateSelector({ settings, room, bookedDates }: DateSelectorProps) {
   const { handleSelect, resetRange, selectedRange } = useReservationContext();
-  console.log("selectedRange", selectedRange);
   const displayRange = isAlreadyBooked(selectedRange, bookedDates)
     ? undefined
     : selectedRange;
@@ -80,7 +79,7 @@ function DateSelector({ settings, room, bookedDates }: DateSelectorProps) {
           ) : null}
         </div>
 
-        {selectedRange && (
+        {displayRange && (
           <button
             className="border border-primary-800 px-4 py-2 text-sm font-semibold"
             onClick={resetRange}

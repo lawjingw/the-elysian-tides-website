@@ -2,7 +2,7 @@ import { format, formatDistance, isPast, isToday, parseISO } from "date-fns";
 import { PencilIcon } from "lucide-react";
 import DeleteReservation from "./delete-reservation";
 import Image from "next/image";
-import { Booking, Guest, Room } from "@/lib/type";
+import { Booking, Room } from "@/lib/type";
 import Link from "next/link";
 
 export const formatDistanceFromNow = (dateStr: string) =>
@@ -11,9 +11,7 @@ export const formatDistanceFromNow = (dateStr: string) =>
   }).replace("about ", "");
 
 type ReservationCardProps = {
-  booking: Booking & { rooms: Pick<Room, "name" | "image"> | null } & {
-    guests: Pick<Guest, "email"> | null;
-  };
+  booking: Booking & { rooms: Pick<Room, "name" | "image"> | null };
 };
 
 function ReservationCard({ booking }: ReservationCardProps) {
@@ -26,7 +24,6 @@ function ReservationCard({ booking }: ReservationCardProps) {
     numGuests,
     created_at: createdAt,
     rooms,
-    guests,
   } = booking;
 
   return (
@@ -84,7 +81,7 @@ function ReservationCard({ booking }: ReservationCardProps) {
               <PencilIcon className="h-5 w-5 text-primary-600 transition-colors group-hover:text-primary-800" />
               <span className="mt-1">Edit</span>
             </Link>
-            <DeleteReservation bookingId={id} email={guests!.email} />
+            <DeleteReservation bookingId={id} />
           </>
         )}
       </div>

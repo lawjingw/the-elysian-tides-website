@@ -1,3 +1,4 @@
+import { gu, is } from "date-fns/locale";
 import z from "zod";
 import { zfd } from "zod-form-data";
 
@@ -15,7 +16,7 @@ export const updateProfileFormSchema = zfd.formData({
   guestID: zfd.numeric(z.number()),
 });
 
-export const updateReservationFormSchema = zfd.formData({
+export const reservationFormSchema = zfd.formData({
   numGuests: zfd.text(z.string({ required_error: "Please select a number" })),
   observations: zfd.text(
     z
@@ -23,5 +24,23 @@ export const updateReservationFormSchema = zfd.formData({
       .max(100, "Observations must be at most 100 characters")
       .optional(),
   ),
-  bookingId: zfd.numeric(z.number()),
+});
+
+export const bookingSchema = z.object({
+  guestId: z.number(),
+  roomId: z.number(),
+  roomPrice: z.number(),
+  numNights: z.number(),
+  numGuests: z.number(),
+  startDate: z.string(),
+  endDate: z.string(),
+  extraPrice: z.number().optional(),
+  hasBreakfast: z.boolean().optional(),
+  isPaid: z.boolean().optional(),
+  observations: z
+    .string()
+    .max(100, "Observations must be at most 100 characters")
+    .optional(),
+  status: z.string().optional(),
+  totalPrice: z.number(),
 });

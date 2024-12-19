@@ -109,14 +109,14 @@ export async function getBookedDatesByRoomId(roomId: number) {
   return bookedDates;
 }
 
-export async function getBookings(email: string) {
+export async function getBookings(guestId: string) {
   const supabase = createClient();
 
   const { data, error } = await supabase
     .from("bookings")
     // We actually also need data on the rooms as well. But let's ONLY take the data that we actually need, in order to reduce downloaded data.
-    .select("*, guests(email), rooms(name, image)")
-    .eq("guests.email", email)
+    .select("*, rooms(name, image)")
+    .eq("guestId", guestId)
     .order("startDate");
   if (error) {
     console.error(error);
@@ -143,8 +143,27 @@ export async function getBooking(id: number) {
   return data;
 }
 
+export async function createBooking(newBooking: TablesInsert<"bookings">) {
+  const supabase = createClient();
+
+  const { data, error } = await supabase
+    .from("bookings")
+    .insert([newBooking])
+    // So that the newly created object gets returned!
+    .select()
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Booking could not be created");
+  }
+
+  return data;
+}
+
 export async function updateBooking(
-  id: number,
+  bookingId: number,
+  guestId: number,
   updatedFields: TablesUpdate<"bookings">,
 ) {
   const supabase = createClient();
@@ -152,7 +171,8 @@ export async function updateBooking(
   const { data, error } = await supabase
     .from("bookings")
     .update(updatedFields)
-    .eq("id", id)
+    .eq("id", bookingId)
+    .eq("guestId", guestId)
     .select()
     .single();
 
@@ -163,10 +183,14 @@ export async function updateBooking(
   return data;
 }
 
-export async function deleteBooking(id: number) {
+export async function deleteBooking(bookingId: number, guestId: number) {
   const supabase = createClient();
 
-  const { error } = await supabase.from("bookings").delete().eq("id", id);
+  const { error } = await supabase
+    .from("bookings")
+    .delete()
+    .eq("id", bookingId)
+    .eq("guestId", guestId);
 
   if (error) {
     console.error(error);
@@ -209,14 +233,17 @@ export async function getGuest(email: string) {
 export async function createGuest(newGuest: TablesInsert<"guests">) {
   const supabase = createClient();
 
-  const { data, error } = await supabase.from("guests").insert([newGuest]);
+  const { data, error } = await supabase
+    .from("guests")
+    .insert([newGuest])
+    .select();
 
   if (error) {
     console.error(error);
     throw new Error("Guest could not be created");
   }
 
-  return data;
+  return data[0];
 }
 
 export async function updateGuest(
@@ -238,62 +265,3 @@ export async function updateGuest(
   }
   return data;
 }
-
-// export async function getRoomPrice(id: number) {
-//   const supabase = await createClient();
-
-//   const { data, error } = await supabase
-//     .from("rooms")
-//     .select("regularPrice, discount")
-//     .eq("id", id)
-//     .single();
-
-//   if (error) {
-//     console.error(error);
-//   }
-
-//   return data;
-// }
-
-// Guests are uniquely identified by their email address
-
-// export async function getBookings(guestId: number) {
-//   const supabase = await createClient();
-
-//   const { data, error, count } = await supabase
-//     .from("bookings")
-//     // We actually also need data on the rooms as well. But let's ONLY take the data that we actually need, in order to reduce downloaded data.
-//     .select(
-//       "id, created_at, startDate, endDate, numNights, numGuests, totalPrice, guestId, roomId, rooms(name, image)",
-//     )
-//     .eq("guestId", guestId)
-//     .order("startDate");
-
-//   if (error) {
-//     console.error(error);
-//     throw new Error("Bookings could not get loaded");
-//   }
-
-//   return data;
-// }
-
-/////////////
-// CREATE
-
-// export async function createBooking(newBooking: object) {
-//   const supabase = await createClient();
-
-//   const { data, error } = await supabase
-//     .from("bookings")
-//     .insert([newBooking])
-//     // So that the newly created object gets returned!
-//     .select()
-//     .single();
-
-//   if (error) {
-//     console.error(error);
-//     throw new Error("Booking could not be created");
-//   }
-
-//   return data;
-// }

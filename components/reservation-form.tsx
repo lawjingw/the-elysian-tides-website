@@ -1,65 +1,117 @@
 "use client";
 
-import { Room } from "@/lib/type";
-import { User } from "@supabase/supabase-js";
-import Avatar from "./avatar";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "./ui/form";
+import FormSelect from "./form-select";
+import { Textarea } from "./ui/textarea";
+import { SubmitButton } from "./submit-button";
+import { useForm } from "react-hook-form";
+import { Room, TReservationForm } from "@/lib/type";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { reservationFormSchema } from "@/lib/schemas";
+import { useReservationContext } from "@/hooks/use-reservation-context";
 
 type ReservationFormProps = {
-  room: Room;
-  user: User | null;
+  booking?: {
+    numGuests: number;
+    observations: string | null;
+    rooms: Pick<Room, "maxCapacity"> | null;
+  };
+  handleAction: (formData: FormData) => void;
+  submitButtonText: string;
+  submitButtonPendingText: string;
+  maxCapacity: number;
 };
 
-function ReservationForm({ room, user }: ReservationFormProps) {
-  const maxCapacity = room.maxCapacity;
+function ReservationForm({
+  booking,
+  maxCapacity,
+  submitButtonText,
+  submitButtonPendingText,
+  handleAction,
+}: ReservationFormProps) {
+  const { selectedRange } = useReservationContext();
+  const { numGuests, observations } = booking || {};
+  const guestOptions = Array.from({ length: maxCapacity }, (_, i) => i + 1).map(
+    (x) => ({
+      value: String(x),
+      label: `${x} ${x === 1 ? "guest" : "guests"}`,
+    }),
+  );
+
+  const form = useForm<TReservationForm>({
+    resolver: zodResolver(reservationFormSchema),
+    defaultValues: {
+      numGuests: numGuests ? String(numGuests) : "",
+      observations: observations || "",
+    },
+  });
 
   return (
-    <div className="w-full scale-[1.01]">
-      <div className="flex items-center justify-between bg-primary-800 px-16 py-2 text-primary-300">
-        <p>Logged in as</p>
-        <Avatar user={user} />
-      </div>
+    <Form {...form}>
+      <form
+        action={async (formData) => {
+          const result = await form.trigger();
+          if (!result) return;
+          handleAction(formData);
+        }}
+        className="flex grow flex-col gap-6 bg-primary-900 px-12 py-8 text-lg"
+      >
+        <FormField
+          control={form.control}
+          name="numGuests"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>How many guests?</FormLabel>
+              <FormControl>
+                <FormSelect
+                  field={field}
+                  placeholder="Select number of guests..."
+                  options={guestOptions}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-      <form className="flex flex-col gap-5 bg-primary-900 px-16 py-10 text-lg">
-        <div className="space-y-2">
-          <label htmlFor="numGuests">How many guests?</label>
-          <select
-            name="numGuests"
-            id="numGuests"
-            className="w-full rounded-sm bg-primary-200 px-5 py-3 text-primary-800 shadow-sm"
-            required
-          >
-            <option value="" key="">
-              Select number of guests...
-            </option>
-            {Array.from({ length: maxCapacity }, (_, i) => i + 1).map((x) => (
-              <option value={x} key={x}>
-                {x} {x === 1 ? "guest" : "guests"}
-              </option>
-            ))}
-          </select>
-        </div>
+        <FormField
+          control={form.control}
+          name="observations"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Anything we should know about your stay?</FormLabel>
+              <FormControl>
+                <Textarea
+                  className="bg-primary-200 text-primary-800"
+                  placeholder="Any special requests or requirements?"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-        <div className="space-y-2">
-          <label htmlFor="observations">
-            Anything we should know about your stay?
-          </label>
-          <textarea
-            name="observations"
-            id="observations"
-            className="w-full rounded-sm bg-primary-200 px-5 py-3 text-primary-800 shadow-sm"
-            placeholder="Any pets, allergies, special requirements, etc.?"
-          />
-        </div>
-
-        <div className="flex items-center justify-end gap-6">
-          <p className="text-base text-primary-300">Start by selecting dates</p>
-
-          <button className="bg-accent-500 px-8 py-4 font-semibold text-primary-800 transition-all hover:bg-accent-600 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
-            Reserve now
-          </button>
+        <div className="flex items-center justify-end">
+          {!(selectedRange && selectedRange.from && selectedRange.to) ? (
+            <p className="py-4 text-base text-primary-300">
+              Start by selecting dates
+            </p>
+          ) : (
+            <SubmitButton pendingText={submitButtonPendingText}>
+              {submitButtonText}
+            </SubmitButton>
+          )}
         </div>
       </form>
-    </div>
+    </Form>
   );
 }
 

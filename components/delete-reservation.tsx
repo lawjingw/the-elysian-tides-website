@@ -8,15 +8,14 @@ import SpinnerMini from "./spinner-mini";
 
 type DeleteReservationProps = {
   bookingId: number;
-  email: string;
 };
 
-function DeleteReservation({ bookingId, email }: DeleteReservationProps) {
+function DeleteReservation({ bookingId }: DeleteReservationProps) {
   const [isPending, startTransition] = useTransition();
 
   const handleDelete = () => {
     startTransition(() => {
-      deleteReservation(bookingId, email);
+      deleteReservation(bookingId);
     });
   };
 
