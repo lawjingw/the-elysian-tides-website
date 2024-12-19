@@ -166,7 +166,7 @@ export async function createReservation(
     }
   }
 
-  revalidatePath("/account/rooms/[id]");
+  revalidatePath("/account/rooms/[id]", "page");
   redirect("/rooms/thankyou");
 }
 
@@ -195,6 +195,6 @@ export async function updateReservation(bookingId: number, formData: FormData) {
     }
   }
 
-  revalidatePath("/account/reservations/edit/[id]");
+  revalidatePath("/account/reservations/edit/[id]", "page");
   redirect("/account/reservations");
 }
