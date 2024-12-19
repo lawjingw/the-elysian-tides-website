@@ -100,7 +100,8 @@ function ReservationForm({
         />
 
         <div className="flex items-center justify-end">
-          {!(selectedRange && selectedRange.from && selectedRange.to) ? (
+          {!(selectedRange && selectedRange.from && selectedRange.to) &&
+          !numGuests ? (
             <p className="py-4 text-base text-primary-300">
               Start by selecting dates
             </p>
