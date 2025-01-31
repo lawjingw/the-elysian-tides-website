@@ -10,8 +10,6 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
         primary: {
           50: "#E1E8EF",
           100: "#D4DEE7",
@@ -23,14 +21,14 @@ const config: Config = {
           700: "#3C546C",
           800: "#2C3D4F",
           900: "#1B2631",
-          950: "#033551",
+          950: "#ffffff",
         },
         accent: {
           50: "#FAF5F0",
           100: "#F4ECE1",
           200: "#E8D6BF",
           300: "#DDC2A2",
-          400: "#D2AF84",
+          400: "#E0BC75",
           500: "#C69963",
           600: "#B78343",
           700: "#926835",
