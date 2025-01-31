@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Avatar from "./avatar";
 import { getCurrentUser } from "@/lib/data-service";
 import NavLink from "./nav-link";
