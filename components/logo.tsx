@@ -21,7 +21,6 @@ function Logo() {
       <span
         className={cn("text-2xl font-bold", {
           "text-white": pathName === "/",
-          "text-slate-800": pathName !== "/",
         })}
       >
         Elysian Tides

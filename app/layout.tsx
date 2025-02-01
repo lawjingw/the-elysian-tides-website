@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${josefin.className} relative flex min-h-screen flex-col bg-white antialiased`}
+        className={`${josefin.className} relative flex min-h-screen flex-col bg-white text-slate-800 antialiased`}
       >
         <Header>
           <Navigation />

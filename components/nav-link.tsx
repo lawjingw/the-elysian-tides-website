@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -10,14 +11,21 @@ type NavLinkProps = {
 
 function NavLink({ href, children }: NavLinkProps) {
   const pathName = usePathname();
-  console.log(pathName);
+
   return (
     <li>
-      <Link
-        href={href}
-        className={`${pathName === "/" ? "text-white" : "text-slate-800"} transition-colors hover:text-accent-400`}
-      >
-        {children}
+      <Link href={href}>
+        <div
+          className={cn(
+            "border-b-2 border-transparent pb-1 transition-all duration-300 hover:border-b-2 hover:border-accent-400 hover:text-accent-400",
+            {
+              "text-white": pathName === "/",
+              "border-accent-400 text-accent-400": pathName === href,
+            },
+          )}
+        >
+          {children}
+        </div>
       </Link>
     </li>
   );

@@ -21,7 +21,7 @@ function Page({ searchParams }: PageProps) {
       <h1 className="mb-5 text-4xl font-medium text-accent-400">
         Our Luxury Rooms
       </h1>
-      <p className="mb-10 text-lg text-primary-200">
+      <p className="mb-10 text-lg">
         Stylishly refurbished, Verdura Resort&apos;s newly decorated rooms and
         suites.
       </p>
