@@ -114,7 +114,7 @@ export async function getBookings(guestId: string) {
   const { data, error } = await supabase
     .from("bookings")
     // We actually also need data on the rooms as well. But let's ONLY take the data that we actually need, in order to reduce downloaded data.
-    .select("*, rooms(name, image)")
+    .select("*, rooms(name, images)")
     .eq("guestId", guestId)
     .order("startDate");
   if (error) {

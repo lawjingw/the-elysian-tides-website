@@ -11,7 +11,7 @@ export const formatDistanceFromNow = (dateStr: string) =>
   }).replace("about ", "");
 
 type ReservationCardProps = {
-  booking: Booking & { rooms: Pick<Room, "name" | "image"> | null };
+  booking: Booking & { rooms: Pick<Room, "name" | "images"> | null };
 };
 
 function ReservationCard({ booking }: ReservationCardProps) {
@@ -29,7 +29,7 @@ function ReservationCard({ booking }: ReservationCardProps) {
   return (
     <div className="flex border border-primary-800">
       <Image
-        src={rooms!.image || ""}
+        src={rooms!.images![0] || ""}
         alt={rooms!.name || ""}
         width={200}
         height={200}
