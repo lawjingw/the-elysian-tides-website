@@ -135,34 +135,43 @@ export type Database = {
       };
       rooms: {
         Row: {
+          bedTypes: string | null;
           created_at: string;
           description: string | null;
           discount: number | null;
           id: number;
-          image: string | null;
+          images: string[] | null;
           maxCapacity: number;
           name: string;
+          privatePool: boolean | null;
           regularPrice: number;
+          roomSize: number | null;
         };
         Insert: {
+          bedTypes?: string | null;
           created_at?: string;
           description?: string | null;
           discount?: number | null;
           id?: number;
-          image?: string | null;
+          images?: string[] | null;
           maxCapacity: number;
           name: string;
+          privatePool?: boolean | null;
           regularPrice: number;
+          roomSize?: number | null;
         };
         Update: {
+          bedTypes?: string | null;
           created_at?: string;
           description?: string | null;
           discount?: number | null;
           id?: number;
-          image?: string | null;
+          images?: string[] | null;
           maxCapacity?: number;
           name?: string;
+          privatePool?: boolean | null;
           regularPrice?: number;
+          roomSize?: number | null;
         };
         Relationships: [];
       };

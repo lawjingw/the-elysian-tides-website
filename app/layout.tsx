@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
 import "react-day-picker/style.css";
 import "@/styles/global.css";
-import { Josefin_Sans } from "next/font/google";
+import { Josefin_Sans, DM_Serif_Display } from "next/font/google";
 import Header from "../components/header";
 import ReservationProvider from "@/contexts/reservation-context";
 import Navigation from "@/components/navigation";
 
 const josefin = Josefin_Sans({
   subsets: ["latin"],
-  display: "swap",
+  variable: "--font-josefin",
+});
+
+const dmSerif = DM_Serif_Display({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-dm-serif-display",
 });
 
 export const metadata: Metadata = {
@@ -27,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${josefin.className} relative flex min-h-screen flex-col bg-white text-zinc-800 antialiased`}
+        className={`${josefin.variable} ${dmSerif.variable} relative flex min-h-screen flex-col bg-white font-sans text-zinc-800 antialiased`}
       >
         <Header>
           <Navigation />

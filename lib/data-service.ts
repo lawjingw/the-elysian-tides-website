@@ -61,7 +61,9 @@ export async function getRooms() {
 
   const { data, error } = await supabase
     .from("rooms")
-    .select("id, name, maxCapacity, regularPrice, discount, image")
+    .select(
+      "id, name, maxCapacity, bedTypes, roomSize, privatePool, regularPrice, discount, images",
+    )
     .order("regularPrice");
 
   if (error) {

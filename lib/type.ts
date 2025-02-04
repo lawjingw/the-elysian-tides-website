@@ -5,9 +5,12 @@ export type Room = {
   id: number;
   name: string;
   maxCapacity: number;
+  bedTypes: string | null;
+  roomSize: number | null;
+  privatePool: boolean | null;
   regularPrice: number;
   discount: number | null;
-  image: string | null;
+  images: string[] | null;
   description?: string | null;
 };
 

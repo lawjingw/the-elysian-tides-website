@@ -1,41 +1,62 @@
 "use client";
 
-import { UsersIcon } from "lucide-react";
+import { Users, BedDouble, Scaling, Waves } from "lucide-react";
 import { Room } from "../lib/type";
-import Image from "next/image";
 import Link from "next/link";
+import { Button } from "./ui/button";
+import RoomImageCarousel from "./room-image-carousel";
 
 type RoomCardProps = {
   room: Room;
 };
 
 function RoomCard({ room }: RoomCardProps) {
-  const { id, name, maxCapacity, regularPrice, discount, image } = room;
+  const {
+    id,
+    name,
+    maxCapacity,
+    bedTypes,
+    roomSize,
+    privatePool,
+    regularPrice,
+    discount,
+    images,
+  } = room;
 
   return (
-    <div className="flex border border-primary-800">
-      <Image
-        src={image || ""}
-        alt={name}
-        width={200}
-        height={200}
-        className="flex-1 border-r border-primary-800 object-cover"
-      />
-
-      <div className="flex-grow">
-        <div className="bg-primary-950 px-7 pb-4 pt-5">
-          <h3 className="mb-3 text-2xl font-semibold text-accent-500">
-            {name}
-          </h3>
-
-          <div className="mb-2 flex items-center gap-3">
-            <UsersIcon className="h-5 w-5 text-primary-600" />
-            <p className="text-lg text-primary-200">
-              For up to <span className="font-bold">{maxCapacity}</span> guests
-            </p>
+    <div className="flex max-w-[960px] border border-zinc-200">
+      <RoomImageCarousel images={images} name={name} />
+      <div className="flex flex-col justify-between px-8 py-6">
+        <div>
+          <h3 className="mb-3 font-serif text-2xl">{name}</h3>
+          <div className="my-7 text-sm text-zinc-600">
+            <div className="mb-2 flex items-center gap-3">
+              <BedDouble className="h-5 w-5" />
+              <p className="leading-4">{bedTypes}</p>
+            </div>
+            <div className="mb-2 flex items-center gap-3">
+              <Scaling className="h-4 w-4" />
+              <p>
+                {roomSize} m<sup>2</sup>
+              </p>
+            </div>
+            <div className="mb-2 flex items-center gap-3">
+              <Users className="h-4 w-4" />
+              <p>
+                For up to <span className="font-bold">{maxCapacity}</span>{" "}
+                guests
+              </p>
+            </div>
+            {privatePool && (
+              <div className="flex items-center gap-3">
+                <Waves className="h-4 w-4" />
+                <p>Private pool </p>
+              </div>
+            )}
           </div>
-
-          <p className="flex items-baseline justify-end gap-3">
+        </div>
+        <div className="text-center">
+          <p className="mb-2 flex items-baseline justify-center gap-3">
             {discount && discount > 0 ? (
               <>
                 <span className="text-3xl font-[350]">
@@ -48,16 +69,10 @@ function RoomCard({ room }: RoomCardProps) {
             ) : (
               <span className="text-3xl font-[350]">£{regularPrice}</span>
             )}
-            <span className="text-primary-200">/ night</span>
+            <span className="text-zinc-400">/ night</span>
           </p>
-        </div>
-
-        <div className="border-t border-t-primary-800 bg-primary-950 text-right">
-          <Link
-            href={`/rooms/${id}`}
-            className="inline-block border-l border-primary-800 px-6 py-4 transition-all hover:bg-accent-600 hover:text-primary-900"
-          >
-            Details & reservation &rarr;
+          <Link href={`/rooms/${id}`}>
+            <Button>Details & reservation</Button>
           </Link>
         </div>
       </div>
