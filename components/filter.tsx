@@ -24,7 +24,7 @@ function Filter() {
   };
 
   return (
-    <div className="flex border border-primary-800">
+    <div className="flex">
       {filterOptions.map(({ filter, label }) => (
         <FilterButton
           key={filter}
@@ -55,8 +55,8 @@ function FilterButton({
   return (
     <button
       onClick={() => handleFilter(filter)}
-      className={cn("px-5 py-2 hover:bg-primary-700", {
-        "bg-primary-700 text-primary-50": isActive,
+      className={cn("px-5 py-2 uppercase", {
+        "text-accent-400": isActive,
       })}
     >
       {children}

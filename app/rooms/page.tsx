@@ -25,7 +25,7 @@ function Page({ searchParams }: PageProps) {
         Stylishly refurbished, Verdura Resort&apos;s newly decorated rooms and
         suites.
       </p>
-      <div className="mb-8 flex justify-end">
+      <div className="mb-8 flex justify-center">
         <Filter />
       </div>
       <Suspense fallback={<Spinner />}>
