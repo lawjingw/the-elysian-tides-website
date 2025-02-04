@@ -45,7 +45,7 @@ function CreateReservationForm({ room, user }: ReservationFormProps) {
 
   return (
     <div className="flex w-full flex-col">
-      <div className="flex items-center justify-between bg-primary-800 px-16 py-2 text-primary-300">
+      <div className="flex items-center justify-between bg-zinc-950 px-16 py-2 text-zinc-300">
         <p>Logged in as</p>
         <Avatar user={user} />
       </div>

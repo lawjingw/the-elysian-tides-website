@@ -14,7 +14,7 @@ async function Reservation({ room }: { room: Room }) {
   const user = await getCurrentUser();
 
   return (
-    <div className="grid min-h-[400px] grid-cols-2 border border-primary-800">
+    <div className="grid min-h-[400px] grid-cols-2 border border-zinc-950">
       <DateSelector settings={settings} bookedDates={bookedDates} room={room} />
       {user ? (
         <ReservationForm room={room} user={user} />

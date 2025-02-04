@@ -17,7 +17,7 @@ function RoomImageCarousel({ images, name }: RoomImageCarouselProps) {
     <Carousel className="w-full max-w-[560px]">
       <CarouselContent>
         {images?.map((image, index) => (
-          <CarouselItem key={index}>
+          <CarouselItem key={index} className="flex">
             <Image
               className="w-full object-cover"
               key={index}

@@ -24,14 +24,16 @@ function RoomCard({ room }: RoomCardProps) {
   } = room;
 
   return (
-    <div className="flex max-w-[960px] border border-zinc-200">
+    <div className="flex w-full border border-zinc-200">
       <RoomImageCarousel images={images} name={name} />
       <div className="flex flex-col justify-between px-8 py-6">
         <div>
           <h3 className="mb-3 font-serif text-2xl">{name}</h3>
           <div className="my-7 text-sm text-zinc-600">
             <div className="mb-2 flex items-center gap-3">
-              <BedDouble className="h-5 w-5" />
+              <div>
+                <BedDouble className="h-4 w-4" />
+              </div>
               <p className="leading-4">{bedTypes}</p>
             </div>
             <div className="mb-2 flex items-center gap-3">
