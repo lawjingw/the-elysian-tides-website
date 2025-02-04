@@ -15,7 +15,7 @@ function Filter() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const currentFilter = searchParams.get("capacity");
+  const currentFilter = searchParams.get("capacity") || "all";
 
   const handleFilter = (filter: string) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -55,7 +55,7 @@ function FilterButton({
   return (
     <button
       onClick={() => handleFilter(filter)}
-      className={cn("px-5 py-2 uppercase", {
+      className={cn("px-5 py-2 uppercase text-zinc-400 hover:text-accent-400", {
         "text-accent-400": isActive,
       })}
     >
