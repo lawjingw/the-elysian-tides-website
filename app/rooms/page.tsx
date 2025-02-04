@@ -29,7 +29,7 @@ function Page({ searchParams }: PageProps) {
         <Filter />
       </div>
       <Suspense fallback={<Spinner />}>
-        <RoomList filter={filter} />
+        {/* <RoomList filter={filter} /> */}
         <ReservationReminder />
       </Suspense>
     </div>
