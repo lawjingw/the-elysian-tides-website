@@ -10,8 +10,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-josefin)"],
-        serif: ["var(--font-dm-serif-display)"],
+        sans: ["var(--font-archivo)"],
+        serif: ["var(--font-dm-serif)"],
       },
       colors: {
         primary: {

@@ -27,7 +27,7 @@ function FormSelect({ field, placeholder, options }: FormSelectProps) {
       onValueChange={field.onChange}
       defaultValue={field.value}
     >
-      <SelectTrigger className="bg-primary-200 px-5 py-5 text-primary-800">
+      <SelectTrigger className="bg-zinc-100 px-5 py-5">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
 

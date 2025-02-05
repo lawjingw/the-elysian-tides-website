@@ -61,7 +61,7 @@ function ReservationForm({
           if (!result) return;
           handleAction(formData);
         }}
-        className="flex grow flex-col gap-6 px-12 py-8 text-lg"
+        className="flex grow flex-col justify-end gap-6 px-12 py-8 text-lg"
       >
         <FormField
           control={form.control}
@@ -89,7 +89,7 @@ function ReservationForm({
               <FormLabel>Anything we should know about your stay?</FormLabel>
               <FormControl>
                 <Textarea
-                  className="bg-primary-200 text-primary-800"
+                  className="bg-zinc-100 placeholder:italic"
                   placeholder="Any special requests or requirements?"
                   {...field}
                 />
@@ -102,9 +102,7 @@ function ReservationForm({
         <div className="flex items-center justify-end">
           {!(selectedRange && selectedRange.from && selectedRange.to) &&
           !numGuests ? (
-            <p className="py-4 text-base text-primary-300">
-              Start by selecting dates
-            </p>
+            <p className="h-9 py-4 text-zinc-500">Start by selecting dates</p>
           ) : (
             <SubmitButton pendingText={submitButtonPendingText}>
               {submitButtonText}

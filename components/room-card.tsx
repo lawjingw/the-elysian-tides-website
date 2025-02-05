@@ -28,7 +28,7 @@ function RoomCard({ room }: RoomCardProps) {
       <RoomImageCarousel images={images} name={name} />
       <div className="flex flex-col justify-between px-8 py-6">
         <div>
-          <h3 className="mb-3 font-serif text-2xl">{name}</h3>
+          <h3 className="mb-3 font-serif text-2xl font-bold">{name}</h3>
           <div className="my-7 text-sm text-zinc-600">
             <div className="mb-2 flex items-center gap-3">
               <div>
@@ -74,7 +74,7 @@ function RoomCard({ room }: RoomCardProps) {
             <span className="text-zinc-400">/ night</span>
           </p>
           <Link href={`/rooms/${id}`}>
-            <Button>Details & reservation</Button>
+            <Button className="duration-300">Details & reservation</Button>
           </Link>
         </div>
       </div>

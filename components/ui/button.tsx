@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "uppercase bg-zinc-950 text-zinc-50 border-2 border-zinc-950 hover:bg-transparent hover:text-zinc-800 dark:bg-zinc-50 dark:text-zinc-800 dark:hover:bg-zinc-50/90",
+          "tracking-widest uppercase bg-zinc-950 text-zinc-50 border-2 border-zinc-950 hover:bg-transparent hover:text-zinc-800 dark:bg-zinc-50 dark:text-zinc-800 dark:hover:bg-zinc-50/90",
         destructive:
           "bg-red-500 text-zinc-50 shadow-sm hover:bg-red-500/90 dark:bg-red-900 dark:text-zinc-50 dark:hover:bg-red-900/90",
         outline:
@@ -23,7 +23,7 @@ const buttonVariants = cva(
       },
       size: {
         default: "h-14 px-3 py-2",
-        sm: "h-8 rounded-md px-3 text-xs",
+        sm: "h-8 rounded-md px-5 py-4 text-xs font-bold",
         lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9",
       },

@@ -15,7 +15,7 @@ function RoomDetail({ room }: { room: Room }) {
 
   return (
     <div className="mb-28 grid grid-cols-[4fr_3fr] gap-20">
-      <div className="relative col-span-2 scale-110">
+      <div className="relative col-span-2">
         {images && (
           <Image
             className="w-full brightness-75"
@@ -25,7 +25,7 @@ function RoomDetail({ room }: { room: Room }) {
             alt={name}
           />
         )}
-        <h3 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-6xl font-semibold text-white">
+        <h3 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-serif text-6xl font-semibold text-white">
           {name}
         </h3>
       </div>

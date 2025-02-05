@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
 import "react-day-picker/style.css";
 import "@/styles/global.css";
-import { Josefin_Sans, DM_Serif_Display } from "next/font/google";
+import { Archivo, Cormorant_Garamond } from "next/font/google";
 import Header from "../components/header";
 import ReservationProvider from "@/contexts/reservation-context";
 import Navigation from "@/components/navigation";
 
-const josefin = Josefin_Sans({
+const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-josefin",
+  variable: "--font-archivo",
 });
 
-const dmSerif = DM_Serif_Display({
+const dmSerif = Cormorant_Garamond({
   subsets: ["latin"],
+  variable: "--font-dm-serif",
   weight: "400",
-  variable: "--font-dm-serif-display",
 });
 
 export const metadata: Metadata = {
@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${josefin.variable} ${dmSerif.variable} relative flex min-h-screen flex-col bg-white font-sans text-zinc-800 antialiased`}
+        className={`${archivo.variable} ${dmSerif.variable} relative flex min-h-screen flex-col bg-white font-sans text-zinc-800 antialiased`}
       >
         <Header>
           <Navigation />

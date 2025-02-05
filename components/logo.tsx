@@ -19,7 +19,7 @@ function Logo() {
         alt="Elysian Tides Resort logo"
       />
       <span
-        className={cn("text-2xl font-bold", {
+        className={cn("font-serif text-3xl", {
           "text-white": pathName === "/",
         })}
       >
