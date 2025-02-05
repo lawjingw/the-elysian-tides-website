@@ -27,13 +27,13 @@ function ReservationCard({ booking }: ReservationCardProps) {
   } = booking;
 
   return (
-    <div className="flex border border-primary-800">
+    <div className="flex border border-zinc-800">
       <Image
         src={rooms!.images![0] || ""}
         alt={rooms!.name || ""}
         width={200}
         height={200}
-        className="border-r border-primary-800 object-cover"
+        className="border-r border-zinc-800 object-cover"
       />
       <div className="flex flex-grow flex-col px-6 py-3">
         <div className="flex items-center justify-between">

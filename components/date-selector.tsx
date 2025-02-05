@@ -4,6 +4,7 @@ import { useReservationContext } from "@/hooks/use-reservation-context";
 import { Room, Settings } from "@/lib/type";
 import { addYears, differenceInDays, isWithinInterval } from "date-fns";
 import { DateRange, DayPicker } from "react-day-picker";
+import { Button } from "./ui/button";
 
 function isAlreadyBooked(range: DateRange | undefined, datesArr: Date[]) {
   return (
@@ -39,6 +40,10 @@ function DateSelector({ settings, room, bookedDates }: DateSelectorProps) {
     <div className="flex flex-col justify-between border-r border-zinc-950">
       <DayPicker
         className="place-self-center pt-12"
+        classNames={{
+          weekday: `text-sm`,
+          day: `text-xs font-bold tracking-widest`,
+        }}
         mode="range"
         min={minBookingLength}
         max={maxBookingLength}
@@ -51,41 +56,38 @@ function DateSelector({ settings, room, bookedDates }: DateSelectorProps) {
         onSelect={handleSelect}
       />
 
-      <div className="flex h-[72px] items-center justify-between bg-accent-500 px-8 text-primary-800">
+      <div className="flex h-[72px] items-center justify-between border-t border-zinc-950 px-8">
         <div className="flex items-baseline gap-6">
           <p className="flex items-baseline gap-2">
             {discount && discount > 0 ? (
               <>
-                <span className="text-2xl">${regularPrice - discount}</span>
+                <span className="text-xl">£{regularPrice - discount}</span>
                 <span className="font-semibold text-primary-700 line-through">
-                  ${regularPrice}
+                  £{regularPrice}
                 </span>
               </>
             ) : (
-              <span className="text-2xl">${regularPrice}</span>
+              <span className="text-xl">£{regularPrice}</span>
             )}
-            <span className="">/night</span>
+            <span>/ night</span>
           </p>
           {numNights ? (
             <>
-              <p className="bg-accent-600 px-3 py-2 text-2xl">
+              <p className="bg-zinc-100 px-3 py-2">
                 <span>&times;</span> <span>{numNights}</span>
               </p>
               <p>
-                <span className="text-lg font-bold uppercase">Total</span>{" "}
-                <span className="text-2xl font-semibold">${roomPrice}</span>
+                <span className="text-sm uppercase">Total</span>{" "}
+                <span className="text-xl">£{roomPrice}</span>
               </p>
             </>
           ) : null}
         </div>
 
         {displayRange && (
-          <button
-            className="border border-primary-800 px-4 py-2 text-sm font-semibold"
-            onClick={resetRange}
-          >
+          <Button className="duration-300" size="sm" onClick={resetRange}>
             Clear
-          </button>
+          </Button>
         )}
       </div>
     </div>
