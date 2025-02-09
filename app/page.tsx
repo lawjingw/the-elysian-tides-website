@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-svh">
       <Image
         className="object-cover object-center brightness-[0.65]"
         src={bg}

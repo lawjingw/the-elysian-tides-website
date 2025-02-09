@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { login } from "@/lib/actions";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -11,48 +12,102 @@ const DEFAULT_PASSWORD = "Guest!23456";
 
 export default function LoginPage() {
   return (
-    <div className="mx-auto flex h-full flex-col items-center justify-center">
-      <h2 className="mb-4 text-2xl font-semibold text-accent-400">Log In</h2>
+    <div className="mx-auto flex min-h-screen w-full max-w-[600px] flex-col items-center justify-center p-4 sm:p-6 md:p-8">
+      <h2 className="mb-4 text-center font-serif text-[2rem] tracking-[-0.02em] sm:text-[2.5rem]">
+        FIND YOUR RESERVATION
+      </h2>
+      <p className="mb-12 text-center text-base text-zinc-600 sm:text-lg">
+        Please provide your login details to access your account.
+      </p>
 
-      <form className="flex flex-col gap-6 bg-primary-900 px-12 py-8 text-lg">
-        <div className="space-y-2">
-          <label htmlFor="email">Email:</label>
+      <form className="w-full space-y-6 sm:space-y-8">
+        <div>
+          <label
+            htmlFor="email"
+            className="text-sm uppercase tracking-wider text-zinc-600"
+          >
+            Email address*
+          </label>
           <input
             id="email"
             name="email"
             type="email"
             defaultValue={DEFAULT_EMAIL}
-            className="w-full rounded-sm bg-primary-200 px-5 py-3 text-primary-800 shadow-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
+            className="mt-1 w-full border-b border-zinc-300 pb-2 text-lg tracking-wide focus:border-zinc-900 focus:outline-none"
             required
           />
         </div>
-        <div className="space-y-2">
-          <label htmlFor="password">Password:</label>
+
+        <div>
+          <label
+            htmlFor="password"
+            className="text-sm uppercase tracking-wider text-zinc-600"
+          >
+            Password*
+          </label>
           <input
             id="password"
             name="password"
             type="password"
             defaultValue={DEFAULT_PASSWORD}
-            className="w-full rounded-sm bg-primary-200 px-5 py-3 text-primary-800 shadow-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
+            className="mt-1 w-full border-b border-zinc-300 pb-2 text-lg tracking-wide focus:border-zinc-900 focus:outline-none"
             required
           />
         </div>
-        <div className="flex items-center justify-end">
-          <button
-            formAction={login}
-            className="bg-accent-500 px-8 py-4 font-semibold text-primary-800 transition-all hover:bg-accent-600 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300"
+
+        <div className="mt-12 flex items-start gap-3">
+          <input
+            type="checkbox"
+            id="remember"
+            className="mt-1.5 h-4 w-4 cursor-pointer accent-zinc-900"
+          />
+          <label
+            htmlFor="remember"
+            className="text-sm leading-relaxed text-zinc-600"
           >
-            Log in
-          </button>
+            Remember me on this device
+          </label>
+        </div>
+
+        <div className="flex flex-col justify-between gap-4 pt-8">
+          <Button
+            formAction={login}
+            className="w-full px-4 py-6 text-sm sm:text-base"
+          >
+            Next
+          </Button>
+        </div>
+
+        <div className="space-y-4 pt-4 sm:space-y-6">
+          <div className="text-center">
+            <Link
+              href="#"
+              className="text-xs text-zinc-600 hover:text-zinc-900 sm:text-sm"
+            >
+              Forgot your password?
+            </Link>
+          </div>
+
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t border-zinc-200" />
+            </div>
+            <div className="relative flex justify-center text-xs sm:text-sm">
+              <span className="bg-white px-4 text-zinc-500">Or</span>
+            </div>
+          </div>
+
+          <p className="text-center text-xs text-zinc-600 sm:text-sm">
+            Don&apos;t have an account?{" "}
+            <Link
+              href="/signup"
+              className="font-medium text-zinc-900 hover:underline"
+            >
+              Register now
+            </Link>
+          </p>
         </div>
       </form>
-
-      <p className="mt-6 text-lg text-primary-200">
-        No account yet?{" "}
-        <Link href="/signup" className="font-medium">
-          Sign up
-        </Link>
-      </p>
     </div>
   );
 }

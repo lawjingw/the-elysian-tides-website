@@ -5,6 +5,7 @@ import { Archivo, Cormorant_Garamond } from "next/font/google";
 import Header from "../components/header";
 import ReservationProvider from "@/contexts/reservation-context";
 import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
 
 const archivo = Archivo({
   subsets: ["latin"],
@@ -38,11 +39,12 @@ export default function RootLayout({
         <Header>
           <Navigation />
         </Header>
-        <div className="flex flex-1 px-8 pb-12 pt-32">
+        <div className="relative flex flex-1 px-8 pb-12 pt-32">
           <main className="mx-auto w-full max-w-7xl">
             <ReservationProvider>{children}</ReservationProvider>
           </main>
         </div>
+        <Footer />
       </body>
     </html>
   );
