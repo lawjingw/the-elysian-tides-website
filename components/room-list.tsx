@@ -29,7 +29,7 @@ async function RoomList({ filter }: { filter: string }) {
   }
 
   return (
-    <div className="mx-auto flex max-w-[970px] flex-col gap-8">
+    <div className="mx-auto grid grid-cols-1 gap-8 md:grid-cols-2">
       {filteredRooms.map((room) => (
         <RoomCard room={room} key={room.id} />
       ))}

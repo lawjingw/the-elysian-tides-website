@@ -17,7 +17,7 @@ function Page({ searchParams }: PageProps) {
   const filter = searchParams?.capacity ?? "all";
 
   return (
-    <div>
+    <div className="container mx-auto max-w-[970px] px-4">
       <h1 className="mb-5 text-4xl font-medium text-accent-400">
         Our Luxury Rooms
       </h1>

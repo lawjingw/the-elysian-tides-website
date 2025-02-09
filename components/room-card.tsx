@@ -24,12 +24,16 @@ function RoomCard({ room }: RoomCardProps) {
   } = room;
 
   return (
-    <div className="flex w-full border border-zinc-200">
-      <RoomImageCarousel images={images} name={name} />
-      <div className="flex flex-col justify-between px-8 py-6">
+    <div className="flex h-full flex-col overflow-hidden border border-zinc-200 bg-white shadow-sm transition-all duration-300 hover:shadow-md">
+      <div className="max-h-[300px] overflow-hidden">
+        <RoomImageCarousel images={images} name={name} />
+      </div>
+      <div className="flex grow flex-col justify-between p-6">
         <div>
-          <h3 className="mb-3 font-serif text-2xl font-bold">{name}</h3>
-          <div className="my-7 text-sm text-zinc-600">
+          <h3 className="mb-3 font-serif text-2xl font-light tracking-wide">
+            {name}
+          </h3>
+          <div className="my-7 space-y-3 text-sm text-zinc-600">
             <div className="mb-2 flex items-center gap-3">
               <div>
                 <BedDouble className="h-4 w-4" />
@@ -58,23 +62,25 @@ function RoomCard({ room }: RoomCardProps) {
           </div>
         </div>
         <div className="text-center">
-          <p className="mb-2 flex items-baseline justify-center gap-3">
+          <p className="mb-4 flex items-baseline justify-center gap-3">
             {discount && discount > 0 ? (
               <>
-                <span className="text-3xl font-[350]">
-                  ${regularPrice - discount}
+                <span className="font-serif text-3xl font-light">
+                  €{regularPrice - discount}
                 </span>
-                <span className="font-semibold text-primary-600 line-through">
-                  ${regularPrice}
+                <span className="font-serif text-zinc-400 line-through">
+                  €{regularPrice}
                 </span>
               </>
             ) : (
-              <span className="text-3xl font-[350]">£{regularPrice}</span>
+              <span className="font-serif text-3xl font-light">
+                €{regularPrice}
+              </span>
             )}
-            <span className="text-zinc-400">/ night</span>
+            <span className="text-zinc-400">per night</span>
           </p>
-          <Link href={`/rooms/${id}`}>
-            <Button className="duration-300">Details & reservation</Button>
+          <Link href={`/rooms/${id}`} className="block">
+            <Button className="w-full duration-300">View Details</Button>
           </Link>
         </div>
       </div>

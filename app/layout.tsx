@@ -38,7 +38,7 @@ export default function RootLayout({
         <Header>
           <Navigation />
         </Header>
-        <div className="flex flex-1 px-8 py-12">
+        <div className="flex flex-1 px-8 pb-12 pt-32">
           <main className="mx-auto w-full max-w-7xl">
             <ReservationProvider>{children}</ReservationProvider>
           </main>
