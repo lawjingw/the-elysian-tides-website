@@ -10,24 +10,20 @@ type NavLinkProps = {
 };
 
 function NavLink({ href, children }: NavLinkProps) {
-  const pathName = usePathname();
+  const pathname = usePathname();
 
   return (
-    <li>
-      <Link href={href}>
-        <div
-          className={cn(
-            "border-b-2 border-transparent pb-1 transition-all duration-300 hover:border-b-2 hover:border-accent-400 hover:text-accent-400",
-            {
-              "text-white": pathName === "/",
-              "border-accent-400 text-accent-400": pathName === href,
-            },
-          )}
-        >
-          {children}
-        </div>
-      </Link>
-    </li>
+    <Link href={href}>
+      <div
+        className={`block border-b-2 px-4 py-2 text-lg font-light tracking-wide transition-colors hover:text-accent-400 ${
+          pathname === href
+            ? "border-accent-400 text-accent-400"
+            : "border-transparent"
+        }`}
+      >
+        {children}
+      </div>
+    </Link>
   );
 }
 
