@@ -31,8 +31,8 @@ function Header({ children }: Readonly<{ children: React.ReactNode }>) {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-8">
         <Logo />
-        <div className="hidden md:block">{children}</div>
         <Sheet>
+          <div className="hidden md:block">{children}</div>
           <SheetTrigger className="md:hidden">
             <Menu className="h-8 w-8" />
           </SheetTrigger>

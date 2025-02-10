@@ -10,13 +10,13 @@ export const metadata: Metadata = {
 
 function Page() {
   return (
-    <div className="grid grid-cols-5 items-center gap-x-24 gap-y-32 text-lg">
-      <div className="col-span-3">
-        <h1 className="mb-10 text-4xl font-medium text-accent-400">
+    <div className="grid grid-cols-1 gap-8 text-lg md:grid-cols-5 md:items-center md:gap-x-24 md:gap-y-32">
+      <div className="col-span-1 md:col-span-3">
+        <h1 className="mb-6 text-3xl font-medium text-accent-400 sm:mb-10 sm:text-4xl">
           Welcome to The Elysian Tides
         </h1>
 
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           <p>
             Where luxury meets the serene beauty of the sea. Nestled along an
             unspoiled stretch of coastline, our resort and spa offer a sanctuary
@@ -31,35 +31,37 @@ function Page() {
             At The Elysian Tides, we believe that true luxury is found in the
             details. Our exquisitely appointed rooms and suites offer panoramic
             views of the sea, complete with plush bedding, bespoke furnishings,
-            and state-of-the-art amenities. Whether you’re unwinding in your
-            private balcony hot tub or enjoying a sunset cocktail, every
+            and state-of-the-art amenities. Whether you&apos;re unwinding in
+            your private balcony hot tub or enjoying a sunset cocktail, every
             experience here is designed to inspire and delight.
           </p>
         </div>
       </div>
 
-      <div className="col-span-2">
+      <div className="col-span-1 md:col-span-2">
         <Image
           src={about1}
           alt="Family sitting around a fire pit in front of cabin"
           placeholder="blur"
+          className="w-full"
         />
       </div>
 
-      <div className="col-span-2">
+      <div className="col-span-1 md:col-span-2">
         <Image
           src={about2}
           placeholder="blur"
           alt="Family that manages The Wild Oasis"
+          className="w-full"
         />
       </div>
 
-      <div className="col-span-3">
-        <h1 className="mb-10 text-4xl font-medium text-accent-400">
+      <div className="col-span-1 md:col-span-3">
+        <h1 className="mb-6 text-3xl font-medium text-accent-400 sm:mb-10 sm:text-4xl">
           A Culinary Journey
         </h1>
 
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           <p>
             Our world-class dining venues promise a culinary experience as
             unforgettable as the view. From fresh, locally sourced seafood to
@@ -76,10 +78,10 @@ function Page() {
             let the ocean&apos;s energy restore your balance and vitality.
           </p>
 
-          <div>
+          <div className="pt-4">
             <Link
               href="/rooms"
-              className="mt-4 inline-block border-2 border-zinc-950 bg-zinc-950 px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:bg-transparent hover:text-zinc-950"
+              className="inline-block w-full border-2 border-zinc-950 bg-zinc-950 px-6 py-4 text-base font-semibold text-white transition-all duration-300 hover:bg-transparent hover:text-zinc-950 sm:w-auto sm:px-8 sm:text-lg"
             >
               Explore our luxury rooms
             </Link>

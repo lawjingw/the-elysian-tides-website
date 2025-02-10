@@ -23,10 +23,10 @@ async function page({ params }: RoomPageProps) {
   const room = await getRoom(params.roomId);
 
   return (
-    <div className="mx-auto mt-8 max-w-6xl">
+    <div className="mx-auto mt-4 max-w-6xl px-4 sm:mt-8 lg:px-0">
       <RoomDetail room={room} />
-      <div>
-        <h2 className="mb-10 text-center text-5xl font-semibold text-accent-400">
+      <div className="space-y-6">
+        <h2 className="text-center font-serif text-3xl font-semibold text-accent-400 sm:text-4xl lg:text-5xl">
           Reserve {room.name.toLowerCase()} today. Pay on arrival.
         </h2>
         <Suspense fallback={<Spinner />}>
