@@ -79,7 +79,7 @@ function Page() {
           <div>
             <Link
               href="/rooms"
-              className="mt-4 inline-block bg-accent-500 px-8 py-5 text-lg font-semibold text-primary-800 transition-all hover:bg-accent-600"
+              className="mt-4 inline-block border-2 border-zinc-950 bg-zinc-950 px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:bg-transparent hover:text-zinc-950"
             >
               Explore our luxury rooms
             </Link>

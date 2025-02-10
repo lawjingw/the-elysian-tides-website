@@ -24,14 +24,14 @@ function DeleteReservation({ bookingId }: DeleteReservationProps) {
       action={handleDelete}
       description="This action cannot be undone. This will permanently delete your reservation."
     >
-      <button className="group flex flex-grow items-center gap-2 px-3 text-xs font-bold uppercase text-primary-300 transition-colors hover:bg-accent-600 hover:text-primary-900">
+      <button className="group inline-flex items-center gap-2 border-b border-zinc-900 pb-0.5 text-sm uppercase tracking-wider hover:text-zinc-600">
         {isPending ? (
           <span className="mx-auto">
             <SpinnerMini />
           </span>
         ) : (
           <>
-            <TrashIcon className="h-5 w-5 text-primary-600 transition-colors group-hover:text-primary-800" />
+            <TrashIcon className="h-5 w-5" />
             <span className="mt-1">Delete</span>
           </>
         )}

@@ -5,7 +5,6 @@ import { country, Guest } from "@/lib/type";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "./ui/input";
 import {
   Form,
   FormControl,
@@ -45,33 +44,33 @@ function UpdateProfileForm({ guest, countries }: UpdateProfileFormProps) {
   const handleAction = async (formData: FormData) => {
     const result = await form.trigger();
     if (!result) return;
-
     await updateProfile(formData);
   };
 
   return (
     <Form {...form}>
-      <form
-        action={handleAction}
-        className="flex flex-col gap-6 bg-primary-900 px-12 py-8 text-lg"
-      >
-        <div className="space-y-2">
-          <label>Full name</label>
-          <Input
+      <form action={handleAction} className="w-full space-y-8">
+        <div>
+          <label className="text-sm uppercase tracking-wider text-zinc-600">
+            Full name*
+          </label>
+          <input
             value={fullName}
             readOnly
             disabled
-            className="bg-primary-200 px-5 py-3 text-primary-800"
+            className="mt-1 w-full border-b border-zinc-300 bg-transparent pb-2 text-lg tracking-wide text-zinc-400 focus:border-zinc-900 focus:outline-none"
           />
         </div>
 
-        <div className="space-y-2">
-          <label>Email address</label>
-          <Input
+        <div>
+          <label className="text-sm uppercase tracking-wider text-zinc-600">
+            Email address*
+          </label>
+          <input
             value={email}
             disabled
             readOnly
-            className="bg-primary-200 px-5 py-3 text-primary-800"
+            className="mt-1 w-full border-b border-zinc-300 bg-transparent pb-2 text-lg tracking-wide text-zinc-400 focus:border-zinc-900 focus:outline-none"
           />
         </div>
 
@@ -81,7 +80,9 @@ function UpdateProfileForm({ guest, countries }: UpdateProfileFormProps) {
           render={({ field }) => (
             <FormItem>
               <div className="flex items-center justify-between">
-                <FormLabel className="text-base">Where are you from?</FormLabel>
+                <FormLabel className="text-sm uppercase tracking-wider text-zinc-600">
+                  Where are you from?*
+                </FormLabel>
                 {countryFlag && (
                   <Image
                     src={countryFlag}
@@ -109,10 +110,12 @@ function UpdateProfileForm({ guest, countries }: UpdateProfileFormProps) {
           name="nationalID"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-base">National ID number</FormLabel>
+              <FormLabel className="text-sm uppercase tracking-wider text-zinc-600">
+                National ID number*
+              </FormLabel>
               <FormControl>
-                <Input
-                  className="bg-primary-200 px-5 py-3 text-primary-800"
+                <input
+                  className="mt-1 w-full border-b border-zinc-300 pb-2 text-lg tracking-wide focus:border-zinc-900 focus:outline-none"
                   {...field}
                 />
               </FormControl>
@@ -128,8 +131,14 @@ function UpdateProfileForm({ guest, countries }: UpdateProfileFormProps) {
           readOnly
           {...form.register("guestID")}
         />
-        <div className="flex items-center justify-end gap-6">
-          <SubmitButton pendingText="Updating...">Update profile</SubmitButton>
+
+        <div className="mt-12 flex items-center justify-between pt-8">
+          <p className="pr-6 text-sm text-zinc-500">* Required fields</p>
+          <div>
+            <SubmitButton pendingText="Updating...">
+              Update profile
+            </SubmitButton>
+          </div>
         </div>
       </form>
     </Form>

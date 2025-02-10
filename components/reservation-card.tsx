@@ -27,63 +27,66 @@ function ReservationCard({ booking }: ReservationCardProps) {
   } = booking;
 
   return (
-    <div className="flex border border-zinc-800">
-      <Image
-        src={rooms!.images![0] || ""}
-        alt={rooms!.name || ""}
-        width={200}
-        height={200}
-        className="border-r border-zinc-800 object-cover"
-      />
-      <div className="flex flex-grow flex-col px-6 py-3">
-        <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold">
-            {numNights} nights in {rooms?.name}
-          </h3>
-          {isPast(new Date(startDate)) ? (
-            <span className="flex h-7 items-center rounded-sm bg-yellow-800 px-3 text-xs font-bold uppercase text-yellow-200">
-              past
-            </span>
-          ) : (
-            <span className="flex h-7 items-center rounded-sm bg-green-800 px-3 text-xs font-bold uppercase text-green-200">
-              upcoming
-            </span>
-          )}
-        </div>
-
-        <p className="text-lg text-primary-300">
-          {format(new Date(startDate), "EEE, MMM dd yyyy")} (
-          {isToday(new Date(startDate))
-            ? "Today"
-            : formatDistanceFromNow(startDate)}
-          ) &mdash; {format(new Date(endDate), "EEE, MMM dd yyyy")}
-        </p>
-
-        <div className="mt-auto flex items-baseline gap-5">
-          <p className="text-xl font-semibold text-accent-400">${totalPrice}</p>
-          <p className="text-primary-300">&bull;</p>
-          <p className="text-lg text-primary-300">
-            {numGuests} guest{numGuests > 1 && "s"}
-          </p>
-          <p className="ml-auto text-sm text-primary-400">
-            Booked {format(new Date(createdAt), "EEE, MMM dd yyyy, p")}
-          </p>
-        </div>
+    <div className="group grid grid-cols-[300px,1fr] overflow-hidden border border-zinc-200 bg-white transition-all hover:border-zinc-300">
+      <div className="relative my-8 ml-8 h-[200px] overflow-hidden">
+        <Image
+          src={rooms!.images![0] || ""}
+          alt={rooms!.name || ""}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
       </div>
 
-      <div className="flex w-[100px] flex-col border-l border-primary-800">
-        {!isPast(new Date(startDate)) && (
-          <>
-            <Link
-              href={`/account/reservations/edit/${id}`}
-              className="group flex flex-grow items-center gap-2 border-b border-primary-800 px-3 text-xs font-bold uppercase text-primary-300 transition-colors hover:bg-accent-600 hover:text-primary-900"
-            >
-              <PencilIcon className="h-5 w-5 text-primary-600 transition-colors group-hover:text-primary-800" />
-              <span className="mt-1">Edit</span>
-            </Link>
-            <DeleteReservation bookingId={id} />
-          </>
-        )}
+      <div className="flex flex-col justify-between p-8">
+        <div className="space-y-4">
+          <div className="flex items-baseline justify-between">
+            <h3 className="font-serif text-2xl font-light tracking-wide">
+              {rooms?.name}
+            </h3>
+            {isPast(new Date(startDate)) ? (
+              <span className="text-sm uppercase tracking-wider text-zinc-500">
+                Past stay
+              </span>
+            ) : (
+              <span className="text-sm uppercase tracking-wider text-emerald-600">
+                Upcoming
+              </span>
+            )}
+          </div>
+
+          <div className="space-y-1 text-zinc-600">
+            <p className="text-lg">
+              {format(new Date(startDate), "MMMM d, yyyy")} &mdash;{" "}
+              {format(new Date(endDate), "MMMM d, yyyy")}
+            </p>
+            <p>
+              {numNights} {numNights === 1 ? "night" : "nights"} &middot;{" "}
+              {numGuests} {numGuests === 1 ? "guest" : "guests"}
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between border-t border-zinc-100 pt-6">
+          <div>
+            <p className="mb-1 text-sm uppercase tracking-wider text-zinc-500">
+              Total price
+            </p>
+            <p className="font-serif text-2xl">£{totalPrice}</p>
+          </div>
+
+          {!isPast(new Date(startDate)) && (
+            <div className="flex gap-4">
+              <Link
+                href={`/account/reservations/edit/${id}`}
+                className="inline-flex items-center gap-2 border-b border-zinc-900 pb-0.5 text-sm uppercase tracking-wider hover:text-zinc-600"
+              >
+                <PencilIcon className="h-4 w-4" />
+                Modify
+              </Link>
+              <DeleteReservation bookingId={id} />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

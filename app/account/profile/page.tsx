@@ -12,14 +12,17 @@ async function Page() {
   const countries = await getCountries();
 
   return (
-    <div>
-      <h2 className="mb-4 text-2xl font-semibold text-accent-400">
-        Update your guest profile
-      </h2>
-      <p className="mb-8 text-lg text-primary-200">
-        Providing the following information will make your check-in process
-        faster and smoother. See you soon!
-      </p>
+    <div className="mx-auto max-w-[800px]">
+      <div className="mb-16 text-center">
+        <h2 className="mb-4 font-serif text-[2.5rem] tracking-[-0.02em]">
+          UPDATE YOUR PROFILE
+        </h2>
+        <p className="text-lg text-zinc-600">
+          Please provide your details to enhance your check-in experience at The
+          Elysian Tides
+        </p>
+      </div>
+
       <UpdateProfileForm guest={guest!} countries={countries} />
     </div>
   );

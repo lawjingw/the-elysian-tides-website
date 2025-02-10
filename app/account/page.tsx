@@ -9,10 +9,13 @@ async function Page() {
   const user = await getCurrentUser();
   const displayName = user?.user_metadata.fullName.split(" ")[0];
   return (
-    <div>
-      <h2 className="mb-7 text-2xl font-semibold text-accent-400">
+    <div className="mb-16 text-center">
+      <h2 className="mb-4 font-serif text-[2.5rem] tracking-[-0.02em]">
         Welcome, {displayName}
       </h2>
+      <p className="text-lg text-zinc-600">
+        Manage your detail and reservations at The Elysian Tides
+      </p>
     </div>
   );
 }

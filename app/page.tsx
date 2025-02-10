@@ -24,13 +24,13 @@ export default function Home() {
               href="/rooms"
               className="border-2 border-white bg-transparent px-8 py-4 text-lg font-light uppercase tracking-wider text-white transition-all duration-300 hover:bg-white hover:text-slate-900"
             >
-              Explore Rooms
+              About Us
             </Link>
             <Link
               href="/about"
               className="border-2 border-white bg-white px-8 py-4 text-lg font-light uppercase tracking-wider text-slate-900 transition-all duration-300 hover:bg-transparent hover:text-white"
             >
-              About Us
+              Explore Rooms
             </Link>
           </div>
         </div>
