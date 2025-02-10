@@ -1,6 +1,3 @@
-import z from "zod";
-import { reservationFormSchema, updateProfileFormSchema } from "./schemas";
-
 export type Room = {
   id: number;
   name: string;
@@ -52,7 +49,3 @@ export type country = {
   name: string;
   flag: string;
 };
-
-export type TUpdateProfileForm = z.infer<typeof updateProfileFormSchema>;
-
-export type TReservationForm = z.infer<typeof reservationFormSchema>;

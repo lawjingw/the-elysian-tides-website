@@ -13,8 +13,7 @@ export function SubmitButton({ pendingText, children }: SubmitButtonProps) {
   return (
     <Button
       disabled={pending}
-      size="sm"
-      className="duration-300 disabled:cursor-not-allowed disabled:bg-zinc-500 disabled:text-zinc-300"
+      className="w-full duration-300 disabled:cursor-not-allowed disabled:bg-zinc-500 disabled:text-zinc-300 sm:text-base"
     >
       {pending ? pendingText : children}
     </Button>

@@ -1,7 +1,7 @@
 "use client";
 
-import { updateProfileFormSchema } from "@/lib/schemas";
-import { country, Guest, TUpdateProfileForm } from "@/lib/type";
+import { TUpdateProfileForm, updateProfileFormSchema } from "@/lib/schemas";
+import { country, Guest } from "@/lib/type";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";

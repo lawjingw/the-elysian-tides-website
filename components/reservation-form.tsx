@@ -12,9 +12,9 @@ import FormSelect from "./form-select";
 import { Textarea } from "./ui/textarea";
 import { SubmitButton } from "./submit-button";
 import { useForm } from "react-hook-form";
-import { Room, TReservationForm } from "@/lib/type";
+import { Room } from "@/lib/type";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { reservationFormSchema } from "@/lib/schemas";
+import { reservationFormSchema, TReservationForm } from "@/lib/schemas";
 import { useReservationContext } from "@/hooks/use-reservation-context";
 
 type ReservationFormProps = {

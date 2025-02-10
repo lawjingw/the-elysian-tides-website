@@ -1,4 +1,3 @@
-import { gu, is } from "date-fns/locale";
 import z from "zod";
 import { zfd } from "zod-form-data";
 
@@ -44,3 +43,37 @@ export const bookingSchema = z.object({
   status: z.string().optional(),
   totalPrice: z.number(),
 });
+
+export const loginFormSchema = z.object({
+  email: z.string().email("Please enter a valid email address"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
+  remember: z.boolean().optional(),
+});
+
+export const signupFormSchema = z
+  .object({
+    fullName: z.string().min(2, "Full name must be at least 2 characters"),
+    email: z.string().email("Please enter a valid email address"),
+    password: z
+      .string()
+      .min(8, "Password must be at least 8 characters")
+      .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
+      .regex(/[0-9]/, "Password must contain at least one number")
+      .regex(
+        /[^A-Za-z0-9]/,
+        "Password must contain at least one special character",
+      ),
+    passwordConfirm: z.string(),
+    terms: z.boolean().refine((val) => val === true, {
+      message: "You must accept the terms and conditions",
+    }),
+  })
+  .refine((data) => data.password === data.passwordConfirm, {
+    message: "Passwords do not match",
+    path: ["passwordConfirm"],
+  });
+
+export type TUpdateProfileForm = z.infer<typeof updateProfileFormSchema>;
+export type TReservationForm = z.infer<typeof reservationFormSchema>;
+export type TLoginForm = z.infer<typeof loginFormSchema>;
+export type TSignupForm = z.infer<typeof signupFormSchema>;
