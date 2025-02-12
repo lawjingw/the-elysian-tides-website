@@ -32,7 +32,7 @@ function DeleteReservation({ bookingId }: DeleteReservationProps) {
         ) : (
           <>
             <TrashIcon className="h-5 w-5" />
-            <span className="mt-1">Delete</span>
+            <span className="mt-1 hidden min-[950px]:block">Delete</span>
           </>
         )}
       </button>

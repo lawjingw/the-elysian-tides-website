@@ -1,7 +1,7 @@
 import UpdateReservationForm from "@/components/update-reservation-form";
 import { getBooking } from "@/lib/data-service";
 
-export type EditReservationPageProps = {
+type EditReservationPageProps = {
   params: {
     bookingId: string;
   };
@@ -22,7 +22,6 @@ async function Page({ params }: EditReservationPageProps) {
       <h2 className="mb-7 text-2xl font-semibold text-accent-400">
         Edit Reservation #{bookingId}
       </h2>
-
       <UpdateReservationForm booking={booking} />
     </div>
   );

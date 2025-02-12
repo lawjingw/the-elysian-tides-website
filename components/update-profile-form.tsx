@@ -49,80 +49,82 @@ function UpdateProfileForm({ guest, countries }: UpdateProfileFormProps) {
 
   return (
     <Form {...form}>
-      <form action={handleAction} className="w-full space-y-8">
-        <div>
-          <label className="text-sm uppercase tracking-wider text-zinc-600">
-            Full name*
-          </label>
-          <input
-            value={fullName}
-            readOnly
-            disabled
-            className="mt-1 w-full border-b border-zinc-300 bg-transparent pb-2 text-lg tracking-wide text-zinc-400 focus:border-zinc-900 focus:outline-none"
-          />
-        </div>
+      <form action={handleAction} className="w-full space-y-6 sm:space-y-8">
+        <div className="space-y-6 sm:space-y-8">
+          <div>
+            <label className="text-xs uppercase tracking-wider text-zinc-600 sm:text-sm">
+              Full name*
+            </label>
+            <input
+              value={fullName}
+              readOnly
+              disabled
+              className="mt-2 w-full border-b border-zinc-300 bg-transparent pb-2 text-base tracking-wide text-zinc-400 focus:border-zinc-900 focus:outline-none sm:text-lg"
+            />
+          </div>
 
-        <div>
-          <label className="text-sm uppercase tracking-wider text-zinc-600">
-            Email address*
-          </label>
-          <input
-            value={email}
-            disabled
-            readOnly
-            className="mt-1 w-full border-b border-zinc-300 bg-transparent pb-2 text-lg tracking-wide text-zinc-400 focus:border-zinc-900 focus:outline-none"
-          />
-        </div>
+          <div>
+            <label className="text-xs uppercase tracking-wider text-zinc-600 sm:text-sm">
+              Email address*
+            </label>
+            <input
+              value={email}
+              disabled
+              readOnly
+              className="mt-2 w-full border-b border-zinc-300 bg-transparent pb-2 text-base tracking-wide text-zinc-400 focus:border-zinc-900 focus:outline-none sm:text-lg"
+            />
+          </div>
 
-        <FormField
-          control={form.control}
-          name="nationality"
-          render={({ field }) => (
-            <FormItem>
-              <div className="flex items-center justify-between">
-                <FormLabel className="text-sm uppercase tracking-wider text-zinc-600">
-                  Where are you from?*
-                </FormLabel>
-                {countryFlag && (
-                  <Image
-                    src={countryFlag}
-                    alt="Country flag"
-                    width={40}
-                    height={20}
-                    className="h-5 rounded-sm"
+          <FormField
+            control={form.control}
+            name="nationality"
+            render={({ field }) => (
+              <FormItem>
+                <div className="flex items-center justify-between">
+                  <FormLabel className="text-xs uppercase tracking-wider text-zinc-600 sm:text-sm">
+                    Where are you from?*
+                  </FormLabel>
+                  {countryFlag && (
+                    <Image
+                      src={countryFlag}
+                      alt="Country flag"
+                      width={40}
+                      height={20}
+                      className="h-4 rounded-sm sm:h-5"
+                    />
+                  )}
+                </div>
+                <FormControl>
+                  <FormSelect
+                    field={field}
+                    placeholder="Select country..."
+                    options={countryOptions}
                   />
-                )}
-              </div>
-              <FormControl>
-                <FormSelect
-                  field={field}
-                  placeholder="Select country..."
-                  options={countryOptions}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="nationalID"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-sm uppercase tracking-wider text-zinc-600">
-                National ID number*
-              </FormLabel>
-              <FormControl>
-                <input
-                  className="mt-1 w-full border-b border-zinc-300 pb-2 text-lg tracking-wide focus:border-zinc-900 focus:outline-none"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="nationalID"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-xs uppercase tracking-wider text-zinc-600 sm:text-sm">
+                  National ID number*
+                </FormLabel>
+                <FormControl>
+                  <input
+                    className="mt-2 w-full border-b border-zinc-300 pb-2 text-base tracking-wide focus:border-zinc-900 focus:outline-none sm:text-lg"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
         <input
           type="number"
@@ -132,13 +134,11 @@ function UpdateProfileForm({ guest, countries }: UpdateProfileFormProps) {
           {...form.register("guestID")}
         />
 
-        <div className="mt-12 flex items-center justify-between pt-8">
-          <p className="pr-6 text-sm text-zinc-500">* Required fields</p>
-          <div>
-            <SubmitButton pendingText="Updating...">
-              Update profile
-            </SubmitButton>
-          </div>
+        <div className="flex flex-col-reverse gap-4 pt-6 sm:flex-row sm:items-center sm:justify-between sm:pt-8">
+          <p className="text-center text-xs text-zinc-500 sm:text-left sm:text-sm">
+            * Required fields
+          </p>
+          <SubmitButton pendingText="Updating...">Update profile</SubmitButton>
         </div>
       </form>
     </Form>

@@ -28,26 +28,27 @@ function SideNavigation() {
   const pathName = usePathname();
 
   return (
-    <nav className="border-r border-primary-900">
-      <ul className="flex h-full flex-col gap-2 text-lg">
+    <nav className="hidden border-r border-primary-900 sm:block">
+      <ul className="flex h-full flex-col items-center gap-2 px-2 py-4 md:items-stretch">
         {navLinks.map((link) => (
           <li key={link.name}>
             <Link
               className={cn(
-                "flex items-center gap-4 px-5 py-3 font-semibold transition-colors hover:bg-zinc-950 hover:text-white",
+                "flex items-center gap-4 rounded-lg px-3 py-2 transition-colors hover:bg-zinc-950 hover:text-white",
                 {
                   "bg-zinc-950 text-white": pathName === link.href,
                 },
               )}
               href={link.href}
+              title={link.name}
             >
               {link.icon}
-              <span>{link.name}</span>
+              <span className="hidden min-[950px]:block">{link.name}</span>
             </Link>
           </li>
         ))}
 
-        <li className="mt-auto">
+        <li className="md:mt-auto">
           <SignOutButton />
         </li>
       </ul>
