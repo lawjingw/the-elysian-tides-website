@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 function Page() {
   return (
-    <div className="grid grid-cols-1 gap-8 text-lg md:grid-cols-5 md:items-center md:gap-x-24 md:gap-y-32">
+    <div className="grid grid-cols-1 gap-8 px-4 text-lg sm:px-0 md:grid-cols-5 md:items-center md:gap-x-24 md:gap-y-32">
       <div className="col-span-1 md:col-span-3">
         <h1 className="mb-6 text-3xl font-medium text-accent-400 sm:mb-10 sm:text-4xl">
           Welcome to The Elysian Tides

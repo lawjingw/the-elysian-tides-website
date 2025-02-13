@@ -10,9 +10,9 @@ function ReservationReminder() {
   if (!selectedRange || !selectedRange.from || !selectedRange.to) return null;
 
   return (
-    <div className="text fixed bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-8 rounded-full bg-accent-500 px-8 py-5 font-semibold text-primary-800 shadow-xl shadow-slate-900">
-      <p>
-        <span>👋</span> Don&apos;t forget to reserve your dates <br /> from{" "}
+    <div className="fixed bottom-6 left-2 right-2 flex items-center justify-between gap-8 rounded-full bg-accent-500 px-6 py-2 text-sm font-semibold text-primary-800 shadow-slate-900 sm:left-1/2 sm:-translate-x-1/2 sm:px-8 sm:py-5 sm:shadow-xl">
+      <p className="grow">
+        <span>👋</span> Don&apos;t forget to reserve your dates from{" "}
         {format(new Date(selectedRange.from), "MMM dd yyyy")} to{" "}
         {format(new Date(selectedRange.to), "MMM dd yyyy")}
       </p>

@@ -61,7 +61,7 @@ function ReservationForm({
           if (!result) return;
           handleAction(formData);
         }}
-        className="flex grow flex-col justify-end gap-6 px-12 py-8 text-lg"
+        className="flex grow flex-col justify-end gap-6 px-2 py-8 text-lg sm:px-12"
       >
         <FormField
           control={form.control}
