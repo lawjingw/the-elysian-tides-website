@@ -67,13 +67,13 @@ function ReservationCard({ booking }: ReservationCardProps) {
           </div>
 
           {!isPast(new Date(startDate)) && (
-            <div className="flex gap-4">
+            <div className="flex items-center gap-4">
               <Link
                 href={`/account/reservations/edit/${id}`}
-                className="inline-flex items-center gap-2 text-sm uppercase tracking-wider hover:text-accent-400"
+                className="inline-flex items-center gap-2 text-sm uppercase tracking-wider hover:text-zinc-600"
               >
-                <PencilIcon className="h-4 w-4" />
-                <span className="hidden border-b border-zinc-900 pb-0.5 min-[950px]:block">
+                <PencilIcon className="h-5 w-5" />
+                <span className="border-b border-zinc-900 pb-0.5 md:hidden min-[950px]:block">
                   Modify
                 </span>
               </Link>
