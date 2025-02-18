@@ -10,10 +10,11 @@ export const metadata: Metadata = {
 };
 
 type PageProps = {
-  searchParams: { capacity: string };
+  searchParams: Promise<{ capacity: string }>;
 };
 
-function Page({ searchParams }: PageProps) {
+async function Page(props: PageProps) {
+  const searchParams = await props.searchParams;
   const filter = searchParams?.capacity ?? "all";
 
   return (

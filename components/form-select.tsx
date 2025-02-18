@@ -20,7 +20,6 @@ type FormSelectProps = {
 };
 
 function FormSelect({ field, placeholder, options }: FormSelectProps) {
-  console.log(placeholder);
   return (
     <Select
       name={field.name}

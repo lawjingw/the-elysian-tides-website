@@ -20,7 +20,7 @@ import {
 import { Booking } from "./type";
 
 export async function login(formData: FormData) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   // type-casting here for convenience
   // in practice, you should validate your inputs
@@ -44,7 +44,7 @@ export async function signup(formData: FormData) {
   const password = formData.get("password") as string;
   const fullName = formData.get("fullName") as string;
 
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const data = {
     email,
@@ -90,7 +90,7 @@ export async function signup(formData: FormData) {
 }
 
 export async function signOut() {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { error } = await supabase.auth.signOut();
   if (error) throw new Error(error.message);

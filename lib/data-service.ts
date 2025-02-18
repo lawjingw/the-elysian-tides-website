@@ -26,11 +26,11 @@ export async function getCountries() {
 // Auth Services
 
 export async function getCurrentUser() {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data, error } = await supabase.auth.getUser();
   if (error) {
-    console.log(error);
+    //console.log(error);
     return null;
   }
 
@@ -41,7 +41,7 @@ export async function getCurrentUser() {
 // Room Services
 
 export async function getRoom(id: number) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data, error } = await supabase
     .from("rooms")
@@ -57,7 +57,7 @@ export async function getRoom(id: number) {
 }
 
 export async function getRooms() {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data, error } = await supabase
     .from("rooms")
@@ -82,7 +82,7 @@ export async function getBookedDatesByRoomId(roomId: number) {
   const todayStr = today.toISOString();
 
   // Getting all bookings
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data, error } = await supabase
     .from("bookings")
@@ -109,7 +109,7 @@ export async function getBookedDatesByRoomId(roomId: number) {
 }
 
 export async function getBookings(guestId: string) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data, error } = await supabase
     .from("bookings")
@@ -126,7 +126,7 @@ export async function getBookings(guestId: string) {
 }
 
 export async function getBooking(id: number) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data, error, count } = await supabase
     .from("bookings")
@@ -143,7 +143,7 @@ export async function getBooking(id: number) {
 }
 
 export async function createBooking(newBooking: TablesInsert<"bookings">) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data, error } = await supabase
     .from("bookings")
@@ -165,7 +165,7 @@ export async function updateBooking(
   guestId: number,
   updatedFields: TablesUpdate<"bookings">,
 ) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data, error } = await supabase
     .from("bookings")
@@ -183,7 +183,7 @@ export async function updateBooking(
 }
 
 export async function deleteBooking(bookingId: number, guestId: number) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { error } = await supabase
     .from("bookings")
@@ -201,7 +201,7 @@ export async function deleteBooking(bookingId: number, guestId: number) {
 // Settings Services
 
 export async function getSettings() {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data, error } = await supabase.from("settings").select("*").single();
 
@@ -217,7 +217,7 @@ export async function getSettings() {
 // Guest Services
 
 export async function getGuest(email: string) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data, error } = await supabase
     .from("guests")
@@ -230,7 +230,7 @@ export async function getGuest(email: string) {
 }
 
 export async function createGuest(newGuest: TablesInsert<"guests">) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data, error } = await supabase
     .from("guests")
@@ -249,7 +249,7 @@ export async function updateGuest(
   id: number,
   updatedFields: TablesUpdate<"guests">,
 ) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data, error } = await supabase
     .from("guests")

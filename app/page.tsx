@@ -4,12 +4,13 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main>
+    <main className="absolute left-0 right-0 top-0 min-h-lvh">
       <Image
         className="object-cover object-center brightness-[0.65]"
         src={bg}
         alt="Luxury resort view"
         placeholder="blur"
+        sizes="100vw"
         priority
         fill
       />

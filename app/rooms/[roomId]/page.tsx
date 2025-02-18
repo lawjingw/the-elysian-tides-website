@@ -3,12 +3,13 @@ import RoomDetail from "@/components/room-detail";
 import { getRoom } from "@/lib/data-service";
 
 type RoomPageProps = {
-  params: {
+  params: Promise<{
     roomId: number;
-  };
+  }>;
 };
 
-export async function generateMetadata({ params }: RoomPageProps) {
+export async function generateMetadata(props: RoomPageProps) {
+  const params = await props.params;
   const room = await getRoom(params.roomId);
   const { name } = room!;
 
@@ -17,7 +18,8 @@ export async function generateMetadata({ params }: RoomPageProps) {
   };
 }
 
-async function page({ params }: RoomPageProps) {
+async function page(props: RoomPageProps) {
+  const params = await props.params;
   const room = await getRoom(params.roomId);
 
   return (

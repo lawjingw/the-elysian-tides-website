@@ -2,18 +2,20 @@ import UpdateReservationForm from "@/components/update-reservation-form";
 import { getBooking } from "@/lib/data-service";
 
 type EditReservationPageProps = {
-  params: {
+  params: Promise<{
     bookingId: string;
-  };
+  }>;
 };
 
-export async function generateMetadata({ params }: EditReservationPageProps) {
+export async function generateMetadata(props: EditReservationPageProps) {
+  const params = await props.params;
   return {
     title: `Edit Reservation #${params.bookingId}`,
   };
 }
 
-async function Page({ params }: EditReservationPageProps) {
+async function Page(props: EditReservationPageProps) {
+  const params = await props.params;
   const bookingId = Number(params.bookingId);
   const booking = await getBooking(bookingId);
 
