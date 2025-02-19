@@ -1,5 +1,3 @@
-"use client";
-
 import { Users, BedDouble, Scaling, Waves } from "lucide-react";
 import { Room } from "../lib/type";
 import Link from "next/link";
@@ -26,7 +24,9 @@ function RoomCard({ room }: RoomCardProps) {
   return (
     <div className="flex h-full flex-col overflow-hidden border border-zinc-200 bg-white shadow-sm transition-all duration-300 hover:shadow-md">
       <div className="max-h-[300px] overflow-hidden">
-        <RoomImageCarousel images={images} name={name} />
+        {images && images.length > 0 && (
+          <RoomImageCarousel images={images} name={name} />
+        )}
       </div>
       <div className="flex grow flex-col justify-between p-6">
         <div>
