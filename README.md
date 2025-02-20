@@ -20,6 +20,7 @@ Elysian Tides is a luxury hotel booking platform that provides guests with a sea
 - **State Management:** React Context
 - **Validation:** Zod
 - **Hosting:** Vercel
+- **Testing:** Vitest, Testing Library
 
 ## 🚀 Getting Started
 
@@ -29,6 +30,7 @@ Ensure you have the following installed:
 
 - [Node.js](https://nodejs.org/) (v16+ recommended)
 - [Git](https://git-scm.com/)
+- [Supabase Account](https://supabase.com/) for database
 
 ### Installation
 
@@ -45,11 +47,69 @@ Ensure you have the following installed:
    npm install
    ```
 
-3. **Run the development server:**
+3. **Set up environment variables:**
+
+   Create a `.env.local` file in the root directory and add the following variables:
+
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+
+4. **Run the development server:**
    ```sh
    npm run dev
    ```
    The app should now be running at `http://localhost:3000`
+
+## 🧪 Testing
+
+The project uses Vitest and Testing Library for unit and integration testing.
+
+### Running Tests
+
+- **Run all tests:**
+  ```sh
+  npm test
+  ```
+
+- **Run tests with UI:**
+  ```sh
+  npm run test:ui
+  ```
+
+- **Generate coverage report:**
+  ```sh
+  npm run coverage
+  ```
+
+## 🚀 Deployment
+
+### Deploying to Vercel
+
+1. **Create a Vercel Account:**
+   - Sign up at [vercel.com](https://vercel.com)
+   - Install Vercel CLI: `npm i -g vercel`
+
+2. **Configure Project:**
+   - Fork this repository to your GitHub account
+   - Connect your GitHub account to Vercel
+   - Import the repository in Vercel dashboard
+
+3. **Environment Setup:**
+   - Add environment variables in Vercel project settings
+   - Configure the same variables as in `.env.local`
+
+4. **Deploy:**
+   - Vercel will automatically deploy your main branch
+   - For manual deployment, run:
+     ```sh
+     vercel
+     ```
+
+5. **Monitor:**
+   - View deployment status in Vercel dashboard
+   - Check build logs and analytics
 
 ## 📁 Project Structure
 
