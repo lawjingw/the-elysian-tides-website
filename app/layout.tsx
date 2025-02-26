@@ -7,6 +7,8 @@ import ReservationProvider from "@/contexts/reservation-context";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
+const DOMAIN_URL = process.env.VERCEL_URL || "localhost:3000";
+
 const archivo = Archivo({
   subsets: ["latin"],
   variable: "--font-archivo",
@@ -19,7 +21,7 @@ const dmSerif = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.VERCEL_URL || "http://localhost:3000"),
+  metadataBase: new URL(`https://${DOMAIN_URL}`),
   title: {
     template: "%s - Elysian Tides Resort",
     default: "The Elysian Tides Resort Website",
