@@ -1,6 +1,7 @@
 import Reservation from "@/components/reservation";
 import RoomDetail from "@/components/room-detail";
 import { getRoom } from "@/lib/data-service";
+import { he } from "date-fns/locale";
 
 type RoomPageProps = {
   params: Promise<{
@@ -13,8 +14,19 @@ export async function generateMetadata(props: RoomPageProps) {
   const room = await getRoom(params.roomId);
   const { name } = room!;
 
+  const base_url = process.env.VERCEL_URL || "http://localhost:3000";
+
   return {
     title: name,
+    openGraph: {
+      title: name,
+      description: `Reserve the ${name} room at the Elysian Tides Resort today.`,
+      type: "website",
+      url: `${base_url}/rooms/${params.roomId}`,
+      images: room.images,
+      width: 1156,
+      height: 768,
+    },
   };
 }
 

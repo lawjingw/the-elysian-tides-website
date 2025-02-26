@@ -19,11 +19,21 @@ const dmSerif = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.VERCEL_URL || "http://localhost:3000"),
   title: {
     template: "%s - Elysian Tides Resort",
     default: "The Elysian Tides Resort Website",
   },
   description: "A luxury hotel website built with Next.js",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Elysian Tides Resort",
+    description: "A luxury hotel website built with Next.js",
+    type: "website",
+    url: "/",
+  },
 };
 
 export default function RootLayout({
