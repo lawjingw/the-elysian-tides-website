@@ -16,12 +16,12 @@ function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/careers" className="hover:text-zinc-300">
+                <Link href="#" className="hover:text-zinc-300">
                   CAREERS
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-zinc-300">
+                <Link href="#" className="hover:text-zinc-300">
                   CONTACT US
                 </Link>
               </li>
