@@ -98,7 +98,7 @@ function LoginForm() {
         />
 
         <div className="flex flex-col justify-between gap-4 pt-8">
-          <SubmitButton pendingText="Submitting...">Next</SubmitButton>
+          <SubmitButton pendingText="Submitting...">Log In</SubmitButton>
         </div>
       </form>
     </Form>

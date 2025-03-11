@@ -32,7 +32,7 @@ export async function login(formData: FormData) {
   const { error } = await supabase.auth.signInWithPassword(data);
 
   if (error) {
-    throw error;
+    throw new Error("Invalid email or password");
   }
 
   revalidatePath("/", "layout");
